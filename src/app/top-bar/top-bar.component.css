@@ -1,0 +1,27 @@
+
+.container-top-bar {
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 5px;   
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container-top-bar button {
+    font-size: 28pt;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    transition: all 0.2s;
+    margin-left: 10px;
+}
+
+.container-top-bar button:hover {
+    -webkit-transform: scale(1.2);
+}
+
+.container-top-bar h1 {
+    width: 100%;
+    text-align: center;
+    font-size: 22pt;
+}
