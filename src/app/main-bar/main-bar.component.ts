@@ -21,6 +21,6 @@ export class MainBarComponent implements OnInit {
   }
 
   createContactMenuButton() {
-    console.log('createa Contact');
+    console.log('create Contact');
   }
 }

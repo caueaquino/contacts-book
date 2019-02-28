@@ -11,6 +11,7 @@ import {
   MatInputModule,
   MatAutocompleteModule,
   MatFormFieldModule,
+  MatCardModule
 } from '@angular/material';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -39,6 +40,7 @@ import { ViewAreaComponent } from './view-area/view-area.component';
     MatInputModule,
     MatAutocompleteModule,
     MatFormFieldModule,
+    MatCardModule,
     FormsModule,
     ReactiveFormsModule
   ],

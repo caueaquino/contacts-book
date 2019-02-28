@@ -1,0 +1,21 @@
+/* CSS Document */
+
+.example-card {
+    max-width: 400px;
+    background-color: rgb(13, 0, 43);
+    color: white;
+}
+
+mat-card-subtitle {
+    color: rgb(224, 224, 224);
+}
+
+.example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+
+}
+
+.avatar-container {
+    background-color: red;  
+}
