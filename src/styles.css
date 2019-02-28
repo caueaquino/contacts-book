@@ -1,6 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 
-
 * {
     margin: 0;
     padding: 0;
@@ -8,8 +7,26 @@
 
 body {
     height: 100vh;
+    background-color: rgb(193, 182, 255);
+    background-image: url('./assets/images/background.jpg');
+    background-repeat: no-repeat;
+    background-attachment: local;
+    background-position: right;
+    background-size: cover;
+}
+
+input:focus {
+    outline-style: none;
 }
 
 button:focus {
     outline-style: none;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
 }

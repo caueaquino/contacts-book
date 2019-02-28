@@ -1,0 +1,12 @@
+<!-- HTML Document -->
+
+<form class="example-form">
+    <input type="text" placeholder="Search Contact" aria-label="Number" [formControl]="myControl" [matAutocomplete]="auto">
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+      <mat-option *ngFor="let contact of filteredContacts | async" [value]="contact">
+        {{contact}}
+      </mat-option>
+    </mat-autocomplete>
+</form>
+
+<i class="material-icons md-36 md-light">search</i>
