@@ -1,7 +1,8 @@
 <!-- HTML Document -->
 
 <app-main-bar></app-main-bar>
-<div class="view-area-container">
+<div class="view-area-container" [style.display]=" viewServicesService.getShowViewArea() ? 'flex' : 'none' ">
     <app-header-view-area></app-header-view-area>
     <app-view-area></app-view-area>
 </div>
+<app-create-contact-area [style.display]=" viewServicesService.getShowCreateContactArea() ? 'flex' : 'none' "></app-create-contact-area>

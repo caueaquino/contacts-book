@@ -1,23 +1,23 @@
 <!-- HTML Document -->
 
 <mat-toolbar>
-  <button mat-icon-button [matMenuTriggerFor]="menu">
-    <mat-icon class="menuButton">more_vert</mat-icon>
+  <button mat-icon-button [matMenuTriggerFor]="menu" class="menuButton">
+    <mat-icon>menu</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
     <h3>Menu</h3>
     <h4>Views</h4>
-    <button mat-menu-item (click)='contactButton()'>
+    <button mat-menu-item (click)='viewServicesService.chooseViewAreaType(0)'>
       <mat-icon>contacts</mat-icon>
       <span>Contacts</span>
     </button>
-    <button mat-menu-item (click)='favoriteButton()'>
+    <button mat-menu-item (click)='viewServicesService.chooseViewAreaType(1)'>
       <mat-icon>star</mat-icon>
       <span>Favorites</span>
     </button>
     <br>
     <h4>Services</h4>
-    <button mat-menu-item (click)='createContactMenuButton()'>
+    <button mat-menu-item (click)='viewServicesService.changeWhatIsShowing(1)' [disabled]=" verifyButtonCreateContactMenu() ? 'true' : 'false' ">
       <mat-icon>person_add</mat-icon>
       <span>Create Contact</span>
     </button>

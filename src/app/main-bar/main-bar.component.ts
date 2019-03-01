@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { ViewServicesService } from './../services/view-services.service';
+
 @Component({
   selector: 'app-main-bar',
   templateUrl: './main-bar.component.html',
@@ -7,20 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainBarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private viewServicesService: ViewServicesService) { }
 
   ngOnInit() {
   }
 
-  contactButton() {
-    console.log('contact');
-  }
+  verifyButtonCreateContactMenu() {
+    if (this.viewServicesService.getShowCreateContactArea() || this.viewServicesService.getIsEditviewArea()) {
+      return true;
 
-  favoriteButton() {
-    console.log('favorite');
-  }
-
-  createContactMenuButton() {
-    console.log('create Contact');
+    } else {
+      return false;
+    }
   }
 }

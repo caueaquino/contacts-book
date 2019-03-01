@@ -11,7 +11,11 @@ import {
   MatInputModule,
   MatAutocompleteModule,
   MatFormFieldModule,
-  MatCardModule
+  MatCardModule,
+  MatPaginatorModule,
+  MatCheckboxModule,
+  MatSlideToggleModule,
+  MatSelectModule
 } from '@angular/material';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -20,6 +24,9 @@ import { SearchContainerComponent } from './search-container/search-container.co
 import { CreateContactAreaComponent } from './create-contact-area/create-contact-area.component';
 import { HeaderViewAreaComponent } from './header-view-area/header-view-area.component';
 import { ViewAreaComponent } from './view-area/view-area.component';
+import { ViewServicesService } from './services/view-services.service';
+import { DataServicesService } from './services/data-services.service';
+import { AlertsComponent } from './alerts/alerts.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +35,8 @@ import { ViewAreaComponent } from './view-area/view-area.component';
     SearchContainerComponent,
     CreateContactAreaComponent,
     HeaderViewAreaComponent,
-    ViewAreaComponent
+    ViewAreaComponent,
+    AlertsComponent
   ],
   imports: [
     BrowserModule,
@@ -42,9 +50,16 @@ import { ViewAreaComponent } from './view-area/view-area.component';
     MatFormFieldModule,
     MatCardModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatPaginatorModule,
+    MatCheckboxModule,
+    MatSlideToggleModule,
+    MatSelectModule
   ],
-  providers: [],
+  providers: [
+    ViewServicesService,
+    DataServicesService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

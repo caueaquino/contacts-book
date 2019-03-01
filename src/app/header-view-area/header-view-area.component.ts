@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { ViewServicesService } from './../services/view-services.service';
+
 @Component({
   selector: 'app-header-view-area',
   templateUrl: './header-view-area.component.html',
@@ -7,12 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderViewAreaComponent implements OnInit {
 
-  constructor() { }
+  constructor(private viewServicesService: ViewServicesService) { }
 
   ngOnInit() {
-  }
-
-  createContactViewButton() {
-    console.log('create Contact View');
   }
 }

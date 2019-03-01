@@ -35,7 +35,7 @@ button {
     align-items: center;
 }
 
-button:hover {
+.menuButton:hover {
     background-color: rgb(30, 0, 99);
 }
 

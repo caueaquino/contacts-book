@@ -1,3 +1,56 @@
-<p>
-  create-contact-area works!
-</p>
+<!-- HTML Document -->
+
+<h2>Create Contact</h2>
+
+<form class="example-form">
+    <div class="example-container">
+        <mat-form-field>
+            <input #createAvatar matInput placeholder="Url Avatar">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input #createFirstName matInput placeholder="First Name" required>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input #createLastName matInput placeholder="Last Name" required>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input #createEmail matInput placeholder="Enter your email" [formControl]="email" required>
+            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-select placeholder="Choose a Gender" [formControl]="genderControl" required>
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let gender of genders" [value]="gender">
+                    {{ gender.gender }}
+                </mat-option>
+            </mat-select>
+
+            <mat-error *ngIf="genderControl.hasError('required')">Please choose a Gender</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input #createCompany matInput placeholder="Company" required>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input #createAddress matInput placeholder="Address">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input #createPhone matInput placeholder="Phone Number">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input #createComments matInput placeholder="Comments">
+        </mat-form-field>
+
+        <mat-slide-toggle #createIsFavorite>Favorite Contact</mat-slide-toggle>
+
+        <button mat-raised-button (click)="viewServicesService.changeWhatIsShowing(0)"><mat-icon>check</mat-icon> Confirm</button>
+        <button mat-raised-button (click)="viewServicesService.changeWhatIsShowing(0)"><mat-icon>close</mat-icon> Cancel</button>
+    </div>
+</form>

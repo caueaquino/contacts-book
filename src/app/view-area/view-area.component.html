@@ -1,14 +1,19 @@
 <!-- HTML Document -->
 
 <mat-card class="example-card">
-    <mat-card-header>
-      <div mat-card-avatar class="avatar-container"></div>
+  <mat-card-header>
+    <div class="container-name">
       <mat-card-title>Cauê</mat-card-title>
       <mat-card-subtitle>Aquino Nogueira</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-    <mat-card-actions>
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
-    </mat-card-actions>
-  </mat-card>
+    </div>
+    <button class="favorite-button"><mat-icon class="favorite-icon">star_border</mat-icon></button>
+  </mat-card-header>
+  
+  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Avatar Contact">
+  
+  <div class="container-buttons-create-contact">
+    <button mat-button><mat-icon>visibility</mat-icon> VIEW</button>
+    <button mat-button><mat-icon>edit</mat-icon> EDIT</button>
+    <button mat-button><mat-icon>delete</mat-icon> DELETE</button>
+  </div>
+</mat-card>
