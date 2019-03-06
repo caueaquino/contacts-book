@@ -1,0 +1,23 @@
+<!-- HTML Document -->
+
+<h2>Contact's Info</h2>
+
+<div class="contact-info-container">
+    <section>
+        <div class="container-back-view">
+            <button mat-button (click)="viewServices.changeWhatIsShowing(0)"><mat-icon class="back-icon">arrow_back</mat-icon> Back</button>
+        </div>
+        <mat-icon class="star-icon" [innerText]=" infoContact.isFavorite ? 'star' : '' "></mat-icon>
+    </section>
+    
+    <img src="{{ infoContact.info.avatar }}" alt="avatar-icon" height="200px" width="200px">
+    <span> Fisrt Name: {{ infoContact.firstName }}</span>
+    <span> Last Name: {{ infoContact.lastName }}</span>
+    <span> Email: {{ infoContact.email }}</span>
+    <span> Gender: {{ genderInfo }}</span>
+    <span> Company: {{ infoContact.info.company }}</span>
+    <span> Address: {{infoContact.info.address }}</span>
+    <span> Phone: {{ infoContact.info.phone }}</span>
+    <span class="comments"> Comments:</span>
+    <textarea disabled cols="30" rows="10">{{ infoContact.info.comments }}</textarea>
+</div>

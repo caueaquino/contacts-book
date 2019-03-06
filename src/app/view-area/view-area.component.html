@@ -9,20 +9,20 @@
         <mat-card-title>{{ contact.firstName }}</mat-card-title>
         <mat-card-subtitle>{{ contact.lastName }}</mat-card-subtitle>
       </div>
-      <button class="favorite-button" (click)="favoriteContactCardButton()"><mat-icon class="favorite-icon" [innerText]=" contact.isFavorite===true ? 'star' : 'star_border' "></mat-icon></button>
+      <button class="favorite-button" (click)="favoriteContactCardButton(contact)"><mat-icon class="favorite-icon" [innerText]=" contact.isFavorite===true ? 'star' : 'star_border' "></mat-icon></button>
     </mat-card-header>
     
     <img mat-card-image src="{{ contact.info.avatar }}" alt="Avatar Contact" width="300">
     
     <div class="container-buttons-create-contact">
-      <button mat-button><mat-icon>visibility</mat-icon> VIEW</button>
+      <button mat-button (click)="viewContactCardButton(contact)"><mat-icon>visibility</mat-icon> VIEW</button>
       <button mat-button (click)= editContactCardButton(contact)><mat-icon>edit</mat-icon> EDIT</button>
-      <button mat-button (click)="deleteContactCardButton(contact.id)"><mat-icon>delete</mat-icon> DELETE</button>
+      <button mat-button (click)="deleteContactCardButton(contact)"><mat-icon>delete</mat-icon> DELETE</button>
     </div>
   </mat-card>
 </section>
 
-<div #loading class="loading-container">
+<div class="loading-container">
   <mat-spinner></mat-spinner>
   <span>Loading</span>
 </div>

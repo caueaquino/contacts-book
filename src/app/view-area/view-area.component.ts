@@ -1,3 +1,4 @@
+import { ContactStruct } from './../services/contactStruct';
 import { Component, OnInit} from '@angular/core';
 
 import { DataServicesService } from '../services/data-services.service';
@@ -25,18 +26,23 @@ export class ViewAreaComponent implements OnInit {
     return false;
   }
 
-  deleteContactCardButton(id) {
-    this.dataServices.setIdToDelete(id);
+  favoriteContactCardButton(contactAux: ContactStruct) {
+    this.dataServices.setContact(contactAux);
+    this.viewServices.chooseAlertToOpen(1);
+  }
+
+  viewContactCardButton(contactAux: ContactStruct) {
+    this.dataServices.setContact(contactAux);
+    this.viewServices.changeWhatIsShowing(2);
+  }
+
+  deleteContactCardButton(contactAux: ContactStruct) {
+    this.dataServices.setContact(contactAux);
     this.viewServices.chooseAlertToOpen(0);
   }
 
-  editContactCardButton(contactToEdit) {
+  editContactCardButton(contactToEdit: ContactStruct) {
     this.dataServices.setContact(contactToEdit);
     this.viewServices.chooseEditArea();
-  }
-
-  favoriteContactCardButton(id) {
-    this.dataServices.setIdToFavorite(id);
-    this.viewServices.chooseAlertToOpen(1);
   }
 }

@@ -30,6 +30,7 @@ import { ViewServicesService } from './services/view-services.service';
 import { DataServicesService } from './services/data-services.service';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 import { FavoriteDialogComponent } from './favorite-dialog/favorite-dialog.component';
+import { ContactInfoAreaComponent } from './contact-info-area/contact-info-area.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { FavoriteDialogComponent } from './favorite-dialog/favorite-dialog.compo
     HeaderViewAreaComponent,
     ViewAreaComponent,
     DeleteDialogComponent,
-    FavoriteDialogComponent
+    FavoriteDialogComponent,
+    ContactInfoAreaComponent
   ],
   imports: [
     BrowserModule,

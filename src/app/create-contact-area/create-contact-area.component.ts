@@ -1,3 +1,4 @@
+import { ContactStruct } from './../services/contactStruct';
 import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 
@@ -36,5 +37,29 @@ export class CreateContactAreaComponent implements OnInit {
     return this.email.hasError('required') ? 'You must enter a value' :
         this.email.hasError('email') ? 'Not a valid email' :
             '';
+  }
+
+  confirmButtonCreateContact() {
+    this.viewServicesService.changeWhatIsShowing(0);
+  }
+
+  cancelButtonCreateContact() {
+    this.viewServicesService.changeWhatIsShowing(0);
+  }
+
+  confirmButtonEditContact() {
+    this.viewServicesService.closeEditArea();
+  }
+
+  cancelButtonEditContact() {
+    this.viewServicesService.closeEditArea();
+  }
+
+  returnGender() {
+    if (this.dataServices.getContact().gender === 'm') {
+      return 'Male';
+    } else {
+      return 'Female';
+    }
   }
 }

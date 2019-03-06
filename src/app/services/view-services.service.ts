@@ -5,11 +5,15 @@ import { Injectable } from '@angular/core';
 })
 export class ViewServicesService {
 
+  private serchOn: boolean;
+
   private showViewArea: boolean;
   private isFavoriteViewArea: boolean;
 
   private showCreateContactArea: boolean;
   private isEditViewArea: boolean;
+
+  private showInfoContactArea: boolean;
 
   private showViewContactDataArea: boolean;
 
@@ -19,11 +23,15 @@ export class ViewServicesService {
   private showConfirmFavorite: boolean;
 
   constructor() {
+    this.serchOn = false;
+
     this.showViewArea = true;
     this.isFavoriteViewArea = false;
 
     this.showCreateContactArea = false;
     this.isEditViewArea = false;
+
+    this.showInfoContactArea = false;
 
     this.showViewContactDataArea = false;
 
@@ -33,12 +41,20 @@ export class ViewServicesService {
     this.showConfirmFavorite = false;
   }
 
+  getSerchOn() {
+    return this.serchOn;
+  }
+
   getShowViewArea() {
     return this.showViewArea;
   }
 
   getShowCreateContactArea() {
     return this.showCreateContactArea;
+  }
+
+  getShowInfoContactArea() {
+    return this.showInfoContactArea;
   }
 
   getShowViewContactDataArea() {
@@ -65,6 +81,10 @@ export class ViewServicesService {
     return this.showConfirmFavorite;
   }
 
+  changeSearchOn() {
+    this.serchOn = !this.serchOn;
+  }
+
   changeWhatIsShowing(option: number) {
     this.setAllViewsFalse();
 
@@ -73,6 +93,9 @@ export class ViewServicesService {
 
     } else if (option === 1) {
       this.showCreateContactArea = true;
+
+    } else if (option === 2) {
+      this.showInfoContactArea = true;
     }
   }
 
@@ -81,6 +104,7 @@ export class ViewServicesService {
     this.showCreateContactArea = false;
     this.showViewContactDataArea = false;
     this.showEditContactArea = false;
+    this.showInfoContactArea = false;
   }
 
   chooseViewAreaType(option: number) {

@@ -1,23 +1,17 @@
 /* CSS Document */
 
-.example-form {
-    min-width: 150px;
-    max-width: 250px;
-    width: 100%;
-    color: white;
-}
-
 input {
     color: white;
-    background-color: rgba(0, 0, 0, 0.123);
+    background-color: rgb(16, 0, 53);
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.171);
     font-size: 18pt;
     padding: 8px 0px 8px 2px;
+    width: 90%;
 }
 
 input:hover {
-    background-color: rgba(255, 255, 255, 0.11);
+    background-color: rgb(30, 0, 100);
 }
 
 input::placeholder {
@@ -26,12 +20,4 @@ input::placeholder {
 
 .example-full-width {
     width: 100%;
-}
-
-.material-icons.md-36 {
-    font-size: 36px;
-}
-
-.material-icons.md-light {
-    color: rgba(255, 255, 255, 1);
 }

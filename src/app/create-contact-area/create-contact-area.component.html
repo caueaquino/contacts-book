@@ -7,7 +7,7 @@
 <form class="example-form" *ngIf=!viewServicesService.getIsEditViewArea()>
     <div class="example-container">
         <mat-form-field>
-            <input #createAvatar matInput placeholder="Url Avatar">
+            <input matInput placeholder="Url Avatar">
         </mat-form-field>
 
         <mat-form-field>
@@ -52,8 +52,8 @@
 
         <mat-slide-toggle #createIsFavorite>Favorite Contact</mat-slide-toggle>
 
-        <button mat-raised-button (click)="viewServicesService.changeWhatIsShowing(0)"><mat-icon>check</mat-icon> Confirm</button>
-        <button mat-raised-button (click)="viewServicesService.changeWhatIsShowing(0)"><mat-icon>close</mat-icon> Cancel</button>
+        <button mat-raised-button (click)="confirmButtonCreateContact()"><mat-icon>check</mat-icon> Confirm</button>
+        <button mat-raised-button (click)="cancelButtonCreateContact()"><mat-icon>close</mat-icon> Cancel</button>
     </div>
 </form>
 
@@ -80,7 +80,6 @@
 
         <mat-form-field>
             <mat-select placeholder="Choose a Gender" [formControl]="genderControl" required>
-                <mat-option>--</mat-option>
                 <mat-option *ngFor="let gender of genders" [value]="gender">
                     {{ gender.gender }}
                 </mat-option>
@@ -105,9 +104,9 @@
             <input #createComments matInput placeholder="Comments" value="{{dataServices.getContact().info.comments}}">
         </mat-form-field>
 
-        <mat-slide-toggle #createIsFavorite>Favorite Contact</mat-slide-toggle>
+        <mat-slide-toggle #createIsFavorite [checked]="dataServices.getContact().isFavorite">Favorite Contact</mat-slide-toggle>
 
-        <button mat-raised-button (click)="viewServicesService.closeEditArea()"><mat-icon>check</mat-icon> Confirm</button>
-        <button mat-raised-button (click)="viewServicesService.closeEditArea()"><mat-icon>close</mat-icon> Cancel</button>
+        <button mat-raised-button (click)="confirmButtonEditContact()"><mat-icon>check</mat-icon> Confirm</button>
+        <button mat-raised-button (click)="cancelButtonEditContact()"><mat-icon>close</mat-icon> Cancel</button>
     </div>
 </form>

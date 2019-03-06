@@ -1,7 +1,9 @@
+import { ContactStruct } from './../services/contactStruct';
 import {Component, OnInit} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
+import { DataServicesService } from '../services/data-services.service';
 
 /**
  * @title Highlight the first autocomplete option
@@ -13,11 +15,13 @@ import {map, startWith} from 'rxjs/operators';
 })
 export class SearchContainerComponent implements OnInit {
 
-  myControl = new FormControl();
-  contacts: string[] = ['Mario', 'Maria', 'Joao'];
-  filteredContacts: Observable<string[]>;
+  private myControl = new FormControl();
+  private contacts;
+  private filteredContacts: Observable<string[]>;
 
-  constructor() { }
+  constructor(private dataServices: DataServicesService) {
+    this.getCompleteNames();
+  }
 
   ngOnInit() {
     this.filteredContacts = this.myControl.valueChanges.pipe(
@@ -30,5 +34,17 @@ export class SearchContainerComponent implements OnInit {
     const filterValue = value.toLowerCase();
 
     return this.contacts.filter(c => c.toLowerCase().indexOf(filterValue) === 0);
+  }
+
+  getCompleteNames() {
+    let x=0;
+    this.dataServices.getContacts$().toPromise().then((aux) => {
+      this.contacts = aux;
+      for (const contact of this.contacts) {
+        x++;
+        console.log(x);
+        this.contacts.push(`${contact.firstName} ${contact.lastName}`);
+      }
+    });
   }
 }

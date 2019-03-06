@@ -12,10 +12,6 @@ export class DataServicesService {
 
   private contacts$: Observable<ContactStruct[]>;
 
-  private idToDelete: string;
-
-  private idToFavorite: string;
-
   constructor(private apiServices: ApiServicesService) { }
 
   getContact() {
@@ -26,26 +22,8 @@ export class DataServicesService {
     return this.contacts$;
   }
 
-  getIdToDelete() {
-    return this.idToDelete;
-  }
-
-  getIdToFavorite() {
-    return this.idToFavorite;
-  }
-
-  setContact(cont) {
+  setContact(cont: ContactStruct) {
     this.contact = cont;
-  }
-
-  setIdToDelete(id) {
-    console.log(id);
-    this.idToDelete = id;
-  }
-
-  setIdToFavorite(id) {
-    console.log(id);
-    this.idToFavorite = id;
   }
 
   setAllContact() {

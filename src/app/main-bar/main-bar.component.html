@@ -24,6 +24,9 @@
   </mat-menu>
 
   <h1>Contacts Book</h1>
-  
-    <app-search-container></app-search-container>
+  <div>
+    <button mat-button (click)='viewServicesService.changeSearchOn()' class="btSearch"><mat-icon class="material-icons md-36 md-light">search</mat-icon></button>
+  </div>
 </mat-toolbar>
+
+<app-search-container *ngIf="viewServicesService.getSerchOn()"></app-search-container>

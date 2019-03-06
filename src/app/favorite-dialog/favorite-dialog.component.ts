@@ -1,5 +1,7 @@
+import { ApiServicesService } from './../services/api-services.service';
 import { Component, OnInit } from '@angular/core';
 import { ViewServicesService } from '../services/view-services.service';
+import { DataServicesService } from '../services/data-services.service';
 
 @Component({
   selector: 'app-favorite-dialog',
@@ -10,7 +12,9 @@ export class FavoriteDialogComponent implements OnInit {
 
   private okFavorite: boolean;
 
-  constructor(private viewServices: ViewServicesService) {
+  constructor(private viewServices: ViewServicesService,
+              private apiServices: ApiServicesService,
+              private dataServices: DataServicesService) {
     this.okFavorite = false;
   }
 
@@ -18,8 +22,13 @@ export class FavoriteDialogComponent implements OnInit {
   }
 
   confirmFavorite() {
+    const contactAux = this.dataServices.getContact();
 
-    this.okFavorite = true;
+    contactAux.isFavorite = !contactAux.isFavorite;
+
+    this.apiServices.updateContact(contactAux).subscribe(() => {
+      this.okFavorite = true;
+    });
   }
 
   okFavoriteButton() {
