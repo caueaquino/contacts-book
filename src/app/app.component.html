@@ -1,5 +1,7 @@
 <!-- HTML Document -->
 
+<app-delete-dialog  *ngIf="viewServicesService.getShowConfirmDelete()"></app-delete-dialog>
+<app-favorite-dialog  *ngIf="viewServicesService.getShowConfirmFavorite()"></app-favorite-dialog>
 <app-main-bar></app-main-bar>
 <div class="view-area-container" [style.display]=" viewServicesService.getShowViewArea() ? 'flex' : 'none' ">
     <app-header-view-area></app-header-view-area>

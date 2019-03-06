@@ -1,0 +1,15 @@
+<!-- HTML Document -->
+
+<div class="dialog-confirm" *ngIf="!this.okFavorite">
+    <span>Change Contact Favorite Status ?</span>
+  
+    <button mat-raised-button (click)="confirmFavorite()"><mat-icon>check</mat-icon> Confirm</button>
+    <button mat-raised-button (click)="viewServices.resetAlerts()"><mat-icon>close</mat-icon> Cancel</button>
+</div>
+
+<div class="dialog-confirm" *ngIf="this.okFavorite">
+    <span>Completed Change !</span>
+
+    <button mat-raised-button (click)="okFavoriteButton()">Ok</button>
+</div>
+  

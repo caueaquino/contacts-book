@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -15,10 +17,10 @@ import {
   MatPaginatorModule,
   MatCheckboxModule,
   MatSlideToggleModule,
-  MatSelectModule
+  MatSelectModule,
+  MatProgressSpinnerModule
 } from '@angular/material';
 
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MainBarComponent } from './main-bar/main-bar.component';
 import { SearchContainerComponent } from './search-container/search-container.component';
 import { CreateContactAreaComponent } from './create-contact-area/create-contact-area.component';
@@ -26,7 +28,8 @@ import { HeaderViewAreaComponent } from './header-view-area/header-view-area.com
 import { ViewAreaComponent } from './view-area/view-area.component';
 import { ViewServicesService } from './services/view-services.service';
 import { DataServicesService } from './services/data-services.service';
-import { AlertsComponent } from './alerts/alerts.component';
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
+import { FavoriteDialogComponent } from './favorite-dialog/favorite-dialog.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,8 @@ import { AlertsComponent } from './alerts/alerts.component';
     CreateContactAreaComponent,
     HeaderViewAreaComponent,
     ViewAreaComponent,
-    AlertsComponent
+    DeleteDialogComponent,
+    FavoriteDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +58,9 @@ import { AlertsComponent } from './alerts/alerts.component';
     MatPaginatorModule,
     MatCheckboxModule,
     MatSlideToggleModule,
-    MatSelectModule
+    MatSelectModule,
+    HttpClientModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     ViewServicesService,

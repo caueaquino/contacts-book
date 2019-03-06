@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 
 import { ViewServicesService } from './../services/view-services.service';
+import { DataServicesService } from '../services/data-services.service';
+import { $ } from 'protractor';
 
 export interface OptionGender {
   gender: string;
@@ -15,7 +17,8 @@ export interface OptionGender {
 })
 export class CreateContactAreaComponent implements OnInit {
 
-  constructor(private viewServicesService: ViewServicesService) { }
+  constructor(private viewServicesService: ViewServicesService,
+              private dataServices: DataServicesService) { }
 
   email = new FormControl('', [Validators.required, Validators.email]);
   genderControl = new FormControl('', [Validators.required]);

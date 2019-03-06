@@ -15,7 +15,7 @@ export class MainBarComponent implements OnInit {
   }
 
   verifyButtonCreateContactMenu() {
-    if (this.viewServicesService.getShowCreateContactArea() || this.viewServicesService.getIsEditviewArea()) {
+    if (this.viewServicesService.getShowCreateContactArea() || this.viewServicesService.getIsEditViewArea()) {
       return true;
 
     } else {

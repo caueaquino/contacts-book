@@ -15,6 +15,9 @@ export class ViewServicesService {
 
   private showEditContactArea: boolean;
 
+  private showConfirmDelete: boolean;
+  private showConfirmFavorite: boolean;
+
   constructor() {
     this.showViewArea = true;
     this.isFavoriteViewArea = false;
@@ -25,6 +28,9 @@ export class ViewServicesService {
     this.showViewContactDataArea = false;
 
     this.showEditContactArea = false;
+
+    this.showConfirmDelete = false;
+    this.showConfirmFavorite = false;
   }
 
   getShowViewArea() {
@@ -47,8 +53,16 @@ export class ViewServicesService {
     return this.isFavoriteViewArea;
   }
 
-  getIsEditviewArea() {
+  getIsEditViewArea() {
     return this.isEditViewArea;
+  }
+
+  getShowConfirmDelete() {
+    return this.showConfirmDelete;
+  }
+
+  getShowConfirmFavorite() {
+    return this.showConfirmFavorite;
   }
 
   changeWhatIsShowing(option: number) {
@@ -70,7 +84,6 @@ export class ViewServicesService {
   }
 
   chooseViewAreaType(option: number) {
-
     if (option === 1) {
       this.isFavoriteViewArea = true;
 
@@ -81,14 +94,29 @@ export class ViewServicesService {
     this.changeWhatIsShowing(0);
   }
 
-  chooseEditCreateArea(option: number) {
-    if (option === 1) {
-      this.isEditViewArea = true;
-
-    } else {
-      this.isEditViewArea = false;
-    }
-
+  chooseEditArea() {
+    this.isEditViewArea = true;
     this.changeWhatIsShowing(1);
+  }
+
+  closeEditArea() {
+    this.isEditViewArea = false;
+    this.changeWhatIsShowing(0);
+  }
+
+  chooseAlertToOpen(option: number) {
+    this.resetAlerts();
+
+    if (option === 0) {
+      this.showConfirmDelete = true;
+
+    } else if (option === 1) {
+      this.showConfirmFavorite = true;
+    }
+  }
+
+  resetAlerts() {
+    this.showConfirmDelete = false;
+    this.showConfirmFavorite = false;
   }
 }
