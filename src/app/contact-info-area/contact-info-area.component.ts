@@ -32,4 +32,20 @@ export class ContactInfoAreaComponent implements OnInit {
       this.genderInfo = 'Female';
     }
   }
+
+  editContactInfoButton() {
+    this.dataServices.setContact(this.infoContact);
+    this.viewServices.changeIsEditFromInfo();
+    this.viewServices.chooseEditArea();
+  }
+
+  deleteContactInfoButton() {
+    this.dataServices.setContact(this.infoContact);
+    this.viewServices.chooseAlertToOpen(0);
+  }
+
+  favoriteContactInfoButton() {
+    this.dataServices.setContact(this.infoContact);
+    this.viewServices.chooseAlertToOpen(1);
+  }
 }

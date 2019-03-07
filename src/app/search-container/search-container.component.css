@@ -8,6 +8,7 @@ input {
     font-size: 18pt;
     padding: 8px 0px 8px 2px;
     width: 90%;
+    margin-right: 15px;
 }
 
 input:hover {
@@ -20,4 +21,54 @@ input::placeholder {
 
 .example-full-width {
     width: 100%;
+}
+
+mat-option {
+    height: 100px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+li {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    list-style-type: none;
+}
+
+img {
+    border-radius: 50px;
+}
+
+span {
+    margin-left: 8px;
+    font-size: 18pt;
+}
+
+.btSearch {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 11px;
+    padding-bottom: 11px;
+    border-radius: 60px;
+    margin-left: 15px;
+}
+
+.btSearch:hover {
+    background-color: rgb(30, 0, 99);
+}
+
+.btSearch mat-icon {
+    margin-left: -10px;
+    margin-top: -15px;
+}
+
+.material-icons.md-36 {
+    font-size: 36px;
+}
+
+.material-icons.md-light {
+    color: rgba(255, 255, 255, 1);
 }

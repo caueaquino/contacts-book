@@ -13,6 +13,8 @@ export class ViewServicesService {
   private showCreateContactArea: boolean;
   private isEditViewArea: boolean;
 
+  private isEditFromInfo: boolean;
+
   private showInfoContactArea: boolean;
 
   private showViewContactDataArea: boolean;
@@ -31,6 +33,8 @@ export class ViewServicesService {
     this.showCreateContactArea = false;
     this.isEditViewArea = false;
 
+    this.isEditFromInfo = false;
+
     this.showInfoContactArea = false;
 
     this.showViewContactDataArea = false;
@@ -41,7 +45,7 @@ export class ViewServicesService {
     this.showConfirmFavorite = false;
   }
 
-  getSerchOn() {
+  getSearchOn() {
     return this.serchOn;
   }
 
@@ -63,6 +67,10 @@ export class ViewServicesService {
 
   getShowEditContactArea() {
     return this.showEditContactArea;
+  }
+
+  getIsEditFromInfo() {
+    return this.isEditFromInfo;
   }
 
   getIsFavoriteViewArea() {
@@ -116,6 +124,11 @@ export class ViewServicesService {
     }
 
     this.changeWhatIsShowing(0);
+  }
+
+
+  changeIsEditFromInfo() {
+    this.isEditFromInfo = !this.isEditFromInfo;
   }
 
   chooseEditArea() {

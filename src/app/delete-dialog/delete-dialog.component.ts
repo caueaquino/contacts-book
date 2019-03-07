@@ -25,6 +25,7 @@ export class DeleteDialogComponent implements OnInit {
     this.apiServices.deleteContact(this.dataServices.getContact().id).subscribe(() => {
       this.okDelete = true;
       this.dataServices.setAllContact();
+      this.viewServices.changeWhatIsShowing(0);
     });
   }
 

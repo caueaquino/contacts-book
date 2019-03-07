@@ -7,7 +7,11 @@
         <div class="container-back-view">
             <button mat-button (click)="viewServices.changeWhatIsShowing(0)"><mat-icon class="back-icon">arrow_back</mat-icon> Back</button>
         </div>
-        <mat-icon class="star-icon" [innerText]=" infoContact.isFavorite ? 'star' : '' "></mat-icon>
+        <button class="action-button" (click)="editContactInfoButton()"><mat-icon>edit</mat-icon></button>
+
+        <button class="action-button" (click)="deleteContactInfoButton()"><mat-icon>delete</mat-icon></button>
+        
+        <button class="action-button" (click)="favoriteContactInfoButton()"><mat-icon [innerText]=" infoContact.isFavorite===true ? 'star' : 'star_border' "></mat-icon></button>
     </section>
     
     <img src="{{ infoContact.info.avatar }}" alt="avatar-icon" height="200px" width="200px">

@@ -48,11 +48,17 @@ export class CreateContactAreaComponent implements OnInit {
   }
 
   confirmButtonEditContact() {
-    this.viewServicesService.closeEditArea();
+    alert('Contact Updated !');
   }
 
   cancelButtonEditContact() {
-    this.viewServicesService.closeEditArea();
+    if (this.viewServicesService.getIsEditFromInfo()) {
+      this.viewServicesService.changeWhatIsShowing(2);
+      this.viewServicesService.changeIsEditFromInfo();
+
+    } else {
+      this.viewServicesService.closeEditArea();
+    }
   }
 
   returnGender() {
