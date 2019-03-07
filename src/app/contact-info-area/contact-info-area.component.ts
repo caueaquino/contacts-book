@@ -24,6 +24,15 @@ export class ContactInfoAreaComponent implements OnInit {
   ngOnInit() {
   }
 
+  verifyAvatar(contactAux: ContactStruct) {
+    if (contactAux.info.avatar === '' || contactAux.info.avatar === null) {
+      return false;
+
+    } else {
+      return true;
+    }
+  }
+
   setGenderInfo() {
     if (this.infoContact.gender === 'm') {
       this.genderInfo = 'Male';

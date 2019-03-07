@@ -23,6 +23,9 @@ export class ViewServicesService {
 
   private showConfirmDelete: boolean;
   private showConfirmFavorite: boolean;
+  private showConfirmEdit: boolean;
+  private showConfirmCreate: boolean;
+  private showAlert: boolean;
 
   constructor() {
     this.serchOn = false;
@@ -43,6 +46,9 @@ export class ViewServicesService {
 
     this.showConfirmDelete = false;
     this.showConfirmFavorite = false;
+    this.showConfirmEdit = false;
+    this.showConfirmCreate = false;
+    this.showAlert = false;
   }
 
   getSearchOn() {
@@ -87,6 +93,18 @@ export class ViewServicesService {
 
   getShowConfirmFavorite() {
     return this.showConfirmFavorite;
+  }
+
+  getShowConfirmEdit() {
+    return this.showConfirmEdit;
+  }
+
+  getShowConfirmCreate() {
+    return this.showConfirmCreate;
+  }
+
+  getShowAlert() {
+    return this.showAlert;
   }
 
   changeSearchOn() {
@@ -149,11 +167,23 @@ export class ViewServicesService {
 
     } else if (option === 1) {
       this.showConfirmFavorite = true;
+
+    } else if (option === 2) {
+      this.showConfirmEdit = true;
+
+    } else if (option === 3) {
+      this.showConfirmCreate = true;
+
+    } else if (option === 4) {
+      this.showAlert = true;
     }
   }
 
   resetAlerts() {
     this.showConfirmDelete = false;
     this.showConfirmFavorite = false;
+    this.showConfirmEdit = false;
+    this.showConfirmCreate = false;
+    this.showAlert = false;
   }
 }

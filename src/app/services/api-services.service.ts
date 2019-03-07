@@ -1,3 +1,4 @@
+import { DataServicesService } from './data-services.service';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ContactStruct } from './contactStruct';
@@ -31,26 +32,24 @@ export class ApiServicesService {
     return this.http.delete(url, httpOptions);
   }
 
-  public createContact(contactAux: ContactStruct) {
-    contactAux = this.setContactToSend(contactAux);
-
-    const postContact = this.setContactData(contactAux);
-
-    return this.http.post<ContactStruct>(this.API, postContact, httpOptions);
+  public createContact(contactAux) {
+    return this.http.post(this.API, contactAux, httpOptions);
   }
 
-  public updateContact(contactAux: ContactStruct) {
+  public updateContact(id, contactAux) {
+    return this.http.put(`${this.API}/${id}`, contactAux, httpOptions);
+  }
 
-    contactAux = this.setContactToSend(contactAux);
+  public updateContactFavorite(contactAux: ContactStruct) {
 
     const putContact = this.setContactData(contactAux);
 
     const url = `${this.API}/${contactAux.id}`;
 
-    return this.http.put<ContactStruct>(url, putContact, httpOptions);
+    return this.http.put(url, putContact, httpOptions);
   }
 
-  setContactData(contactAux: ContactStruct) {
+  setContactData(contactAux) {
     const Contact = {
       firstName: contactAux.firstName,
       lastName: contactAux.lastName,
@@ -67,15 +66,21 @@ export class ApiServicesService {
     return Contact;
   }
 
-  setContactToSend(contactAux: ContactStruct) {
-    if (contactAux.info.phone === '') {
-      contactAux.info.phone = null;
+  setUpDataContact(contactAux) {
+    if (contactAux.avatar === '') {
+      contactAux.avatar = null;
     }
 
-    if (contactAux.info.address === '') {
-      contactAux.info.address = null;
+    if (contactAux.address === '') {
+      contactAux.address = null;
     }
 
-    return contactAux;
+    if (contactAux.phone === '') {
+      contactAux.phone = null;
+    }
+
+    if (contactAux.comments === '') {
+      contactAux.comments = null;
+    }
   }
 }

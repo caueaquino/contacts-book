@@ -1,0 +1,14 @@
+<!-- HTML Document -->
+
+<div class="dialog-confirm" *ngIf="!this.okEdit">
+  <span>Change Contact's data ?</span>
+
+  <button mat-raised-button (click)="confirmEdit()"><mat-icon>check</mat-icon> Confirm</button>
+  <button mat-raised-button (click)="cancelEdit()"><mat-icon>close</mat-icon> Cancel</button>
+</div>
+
+<div class="dialog-confirm" *ngIf="this.okEdit">
+  <span>Completed Change !</span>
+
+  <button mat-raised-button (click)="okEditButton()">Ok</button>
+</div>

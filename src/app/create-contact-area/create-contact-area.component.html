@@ -2,111 +2,54 @@
 
 <h2 [innerText]=" viewServicesService.getIsEditViewArea() ? 'Edit Contact' : 'Create Contact' "></h2>
 
-<!-- Create Contact Form -->
-
-<form class="example-form" *ngIf=!viewServicesService.getIsEditViewArea()>
+<form class="example-form" [formGroup]="formContact">
     <div class="example-container">
         <mat-form-field>
-            <input matInput placeholder="Url Avatar">
+            <input matInput placeholder="Url Avatar" formControlName="avatar">
         </mat-form-field>
 
         <mat-form-field>
-            <input #createFirstName matInput placeholder="First Name" required>
+            <input matInput placeholder="First Name" formControlName="firstName" required>
         </mat-form-field>
 
         <mat-form-field>
-            <input #createLastName matInput placeholder="Last Name" required>
+            <input matInput placeholder="Last Name" formControlName="lastName" required>
         </mat-form-field>
 
         <mat-form-field>
-            <input #createEmail matInput placeholder="Enter your email" [formControl]="email" required>
-            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+            <input matInput placeholder="Enter your email"  formControlName="email" required>
         </mat-form-field>
 
         <mat-form-field>
-            <mat-select placeholder="Choose a Gender" [formControl]="genderControl" required>
-                <mat-option>--</mat-option>
-                <mat-option *ngFor="let gender of genders" [value]="gender">
+            <mat-select placeholder="Choose a Gender" formControlName="gender" required>
+                <mat-option *ngFor="let gender of genders" [value]="gender.valu">
                     {{ gender.gender }}
                 </mat-option>
             </mat-select>
-
-            <mat-error *ngIf="genderControl.hasError('required')">Please choose a Gender</mat-error>
         </mat-form-field>
 
         <mat-form-field>
-            <input #createCompany matInput placeholder="Company" required>
+            <input matInput placeholder="Company" formControlName="company" required>
         </mat-form-field>
 
         <mat-form-field>
-            <input #createAddress matInput placeholder="Address">
+            <input matInput placeholder="Address" formControlName="address">
         </mat-form-field>
 
         <mat-form-field>
-            <input #createPhone matInput placeholder="Phone Number">
+            <input matInput placeholder="Phone Number" formControlName="phone">
         </mat-form-field>
 
         <mat-form-field>
-            <input #createComments matInput placeholder="Comments">
+            <input matInput placeholder="Comments" formControlName="comments">
         </mat-form-field>
 
-        <mat-slide-toggle #createIsFavorite>Favorite Contact</mat-slide-toggle>
+        <mat-slide-toggle #createIsFavorite formControlName="isFavorite">Favorite Contact</mat-slide-toggle>
+        
+        <button *ngIf=!viewServicesService.getIsEditViewArea() mat-raised-button (click)="confirmButtonCreateContact()"><mat-icon>check</mat-icon> Confirm</button>
+        <button *ngIf=!viewServicesService.getIsEditViewArea() mat-raised-button (click)="cancelButtonCreateContact()"><mat-icon>close</mat-icon> Cancel</button>
 
-        <button mat-raised-button (click)="confirmButtonCreateContact()"><mat-icon>check</mat-icon> Confirm</button>
-        <button mat-raised-button (click)="cancelButtonCreateContact()"><mat-icon>close</mat-icon> Cancel</button>
-    </div>
-</form>
-
-<!-- Edit Contact Form -->
-
-<form class="example-form" *ngIf=viewServicesService.getIsEditViewArea()>
-    <div class="example-container">
-        <mat-form-field>
-            <input #createAvatar matInput placeholder="Url Avatar" value="{{dataServices.getContact().info.avatar}}">
-        </mat-form-field>
-
-        <mat-form-field>
-            <input #createFirstName matInput placeholder="First Name" value="{{dataServices.getContact().firstName}}" required>
-        </mat-form-field>
-
-        <mat-form-field>
-            <input #createLastName matInput placeholder="Last Name" value="{{dataServices.getContact().lastName}}" required>
-        </mat-form-field>
-
-        <mat-form-field>
-            <input #createEmail matInput placeholder="Enter your email" [formControl]="email" value="{{dataServices.getContact().email}}" required>
-            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-
-        <mat-form-field>
-            <mat-select placeholder="Choose a Gender" [formControl]="genderControl" required>
-                <mat-option *ngFor="let gender of genders" [value]="gender">
-                    {{ gender.gender }}
-                </mat-option>
-            </mat-select>
-
-            <mat-error *ngIf="genderControl.hasError('required')">Please choose a Gender</mat-error>
-        </mat-form-field>
-
-        <mat-form-field>
-            <input #createCompany matInput placeholder="Company" value="{{dataServices.getContact().info.company}}" required>
-        </mat-form-field>
-
-        <mat-form-field>
-            <input #createAddress matInput placeholder="Address" value="{{dataServices.getContact().info.address}}">
-        </mat-form-field>
-
-        <mat-form-field>
-            <input #createPhone matInput placeholder="Phone Number" value="{{dataServices.getContact().info.phone}}">
-        </mat-form-field>
-
-        <mat-form-field>
-            <input #createComments matInput placeholder="Comments" value="{{dataServices.getContact().info.comments}}">
-        </mat-form-field>
-
-        <mat-slide-toggle #createIsFavorite [checked]="dataServices.getContact().isFavorite">Favorite Contact</mat-slide-toggle>
-
-        <button mat-raised-button (click)="confirmButtonEditContact()"><mat-icon>check</mat-icon> Confirm</button>
-        <button mat-raised-button (click)="cancelButtonEditContact()"><mat-icon>close</mat-icon> Cancel</button>
+        <button *ngIf=viewServicesService.getIsEditViewArea() mat-raised-button (click)="confirmButtonEditContact()"><mat-icon>check</mat-icon> Confirm</button>
+        <button *ngIf=viewServicesService.getIsEditViewArea() mat-raised-button (click)="cancelButtonEditContact()"><mat-icon>close</mat-icon> Cancel</button>
     </div>
 </form>

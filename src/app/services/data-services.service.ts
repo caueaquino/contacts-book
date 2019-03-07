@@ -10,6 +10,8 @@ export class DataServicesService {
 
   private contact: ContactStruct;
 
+  private contactForm;
+
   private contacts$: Observable<ContactStruct[]>;
 
   constructor(private apiServices: ApiServicesService) { }
@@ -18,12 +20,20 @@ export class DataServicesService {
     return this.contact;
   }
 
+  getContactForm() {
+    return this.contactForm;
+  }
+
   getContacts$() {
     return this.contacts$;
   }
 
   setContact(cont: ContactStruct) {
     this.contact = cont;
+  }
+
+  setContactForm(cf) {
+    this.contactForm = cf;
   }
 
   setAllContact() {

@@ -1,6 +1,6 @@
 import { ContactStruct } from './../services/contactStruct';
 import { Component, OnInit } from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
+import {FormControl, Validators, FormGroup, FormBuilder} from '@angular/forms';
 
 import { ViewServicesService } from './../services/view-services.service';
 import { DataServicesService } from '../services/data-services.service';
@@ -18,12 +18,12 @@ export interface OptionGender {
 })
 export class CreateContactAreaComponent implements OnInit {
 
-  constructor(private viewServicesService: ViewServicesService,
-              private dataServices: DataServicesService) { }
+  private formContact: FormGroup;
+  private contactAux: ContactStruct;
 
-  email = new FormControl('', [Validators.required, Validators.email]);
-  genderControl = new FormControl('', [Validators.required]);
-  selectFormControl = new FormControl('', Validators.required);
+  constructor(private viewServicesService: ViewServicesService,
+              private dataServices: DataServicesService,
+              private formBuilder: FormBuilder) { }
 
   genders: OptionGender[] = [
     {gender: 'Male', valu: 'm'},
@@ -31,16 +31,17 @@ export class CreateContactAreaComponent implements OnInit {
   ];
 
   ngOnInit() {
-  }
-
-  getErrorMessage() {
-    return this.email.hasError('required') ? 'You must enter a value' :
-        this.email.hasError('email') ? 'Not a valid email' :
-            '';
+    this.contactAux = this.dataServices.getContact();
+    this.setUpFieldsForm();
   }
 
   confirmButtonCreateContact() {
-    this.viewServicesService.changeWhatIsShowing(0);
+    if (this.formContact.valid) {
+      this.dataServices.setContactForm(this.formContact.value);
+      this.viewServicesService.chooseAlertToOpen(3);
+    } else {
+      this.viewServicesService.chooseAlertToOpen(4);
+    }
   }
 
   cancelButtonCreateContact() {
@@ -48,7 +49,12 @@ export class CreateContactAreaComponent implements OnInit {
   }
 
   confirmButtonEditContact() {
-    alert('Contact Updated !');
+    if (this.formContact.valid) {
+      this.dataServices.setContactForm(this.formContact.value);
+      this.viewServicesService.chooseAlertToOpen(2);
+    } else {
+      this.viewServicesService.chooseAlertToOpen(4);
+    }
   }
 
   cancelButtonEditContact() {
@@ -61,11 +67,34 @@ export class CreateContactAreaComponent implements OnInit {
     }
   }
 
-  returnGender() {
-    if (this.dataServices.getContact().gender === 'm') {
-      return 'Male';
+  setUpFieldsForm() {
+    if (this.viewServicesService.getIsEditViewArea()) {
+      this.formContact = this.formBuilder.group({
+        firstName: [this.contactAux.firstName, [Validators.required, Validators.minLength(3)]],
+        lastName: [this.contactAux.lastName, [Validators.required, Validators.minLength(3)]],
+        email: [this.contactAux.email, [Validators.required, Validators.email]],
+        gender: [this.contactAux.gender],
+        isFavorite: [this.contactAux.isFavorite],
+        company: [this.contactAux.info.company, [Validators.required, Validators.minLength(3)]],
+        avatar: [this.contactAux.info.avatar, [Validators.minLength(3)]],
+        address: [this.contactAux.info.address, [Validators.minLength(3)]],
+        phone: [this.contactAux.info.phone, [Validators.minLength(3)]],
+        comments: [this.contactAux.info.comments, [Validators.minLength(3)]],
+      });
+
     } else {
-      return 'Female';
+      this.formContact = this.formBuilder.group({
+        firstName: [null, [Validators.required, Validators.minLength(3)]],
+        lastName: [null, [Validators.required, Validators.minLength(3)]],
+        email: [null, [Validators.required, Validators.email]],
+        gender: ['m'],
+        isFavorite: [false],
+        company: [null, [Validators.required, Validators.minLength(3)]],
+        avatar: [null, [Validators.minLength(3)]],
+        address: [null, [Validators.minLength(3)]],
+        phone: [null, [Validators.minLength(3)]],
+        comments: [null, [Validators.minLength(3)]],
+      });
     }
   }
 }

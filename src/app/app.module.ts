@@ -31,6 +31,9 @@ import { DataServicesService } from './services/data-services.service';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 import { FavoriteDialogComponent } from './favorite-dialog/favorite-dialog.component';
 import { ContactInfoAreaComponent } from './contact-info-area/contact-info-area.component';
+import { CreateDialogComponent } from './create-dialog/create-dialog.component';
+import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
+import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +45,10 @@ import { ContactInfoAreaComponent } from './contact-info-area/contact-info-area.
     ViewAreaComponent,
     DeleteDialogComponent,
     FavoriteDialogComponent,
-    ContactInfoAreaComponent
+    ContactInfoAreaComponent,
+    CreateDialogComponent,
+    EditDialogComponent,
+    AlertDialogComponent
   ],
   imports: [
     BrowserModule,
