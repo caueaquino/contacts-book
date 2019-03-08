@@ -33,11 +33,15 @@ export class ApiServicesService {
   }
 
   public createContact(contactAux) {
-    return this.http.post(this.API, contactAux, httpOptions);
+    const postContact = this.setUpDataContact(contactAux);
+
+    return this.http.post(this.API, postContact, httpOptions);
   }
 
-  public updateContact(id, contactAux) {
-    return this.http.put(`${this.API}/${id}`, contactAux, httpOptions);
+  public updateContact(contactAux) {
+    const putContact = this.setUpDataContact(contactAux);
+
+    return this.http.put(`${this.API}/${contactAux.id}`, putContact, httpOptions);
   }
 
   public updateContactFavorite(contactAux: ContactStruct) {
