@@ -21,10 +21,10 @@ export class CreateDialogComponent implements OnInit {
   }
 
   confirmCreate() {
-    this.apiServices.createContact(this.dataServices.getContactForm()).subscribe(() => {
-      this.okCreate = true;
-      this.dataServices.setAllContact();
-    });
+    this.apiServices.createContact(this.dataServices.getContactForm()).subscribe(
+      success => (this.okCreate = true, this.dataServices.setAllContact()),
+      error => (this.viewServices.chooseAlertToOpen(5), this.dataServices.setAllContact())
+    );
   }
 
   cancelCreate() {

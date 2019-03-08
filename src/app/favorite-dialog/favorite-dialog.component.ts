@@ -26,9 +26,10 @@ export class FavoriteDialogComponent implements OnInit {
 
     contactAux.isFavorite = !contactAux.isFavorite;
 
-    this.apiServices.updateContactFavorite(contactAux).subscribe(() => {
-      this.okFavorite = true;
-    });
+    this.apiServices.updateContactFavorite(contactAux).subscribe(
+      success => this.okFavorite = true,
+      error => (this.viewServices.chooseAlertToOpen(5), this.dataServices.setAllContact())
+    );
   }
 
   okFavoriteButton() {

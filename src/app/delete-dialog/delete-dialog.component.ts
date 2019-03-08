@@ -22,15 +22,15 @@ export class DeleteDialogComponent implements OnInit {
   }
 
   confirmDelete() {
-    this.apiServices.deleteContact(this.dataServices.getContact().id).subscribe(() => {
-      this.okDelete = true;
-      this.dataServices.setAllContact();
-      this.viewServices.changeWhatIsShowing(0);
-    });
+    this.apiServices.deleteContact(this.dataServices.getContact().id).subscribe(
+      success => (this.okDelete = true, this.dataServices.setAllContact(), this.viewServices.setAllViewsFalse()),
+      error => this.viewServices.chooseAlertToOpen(5)
+    );
   }
 
   okDeleteButton() {
     this.okDelete = false;
     this.viewServices.resetAlerts();
+    this.viewServices.changeWhatIsShowing(0);
   }
 }

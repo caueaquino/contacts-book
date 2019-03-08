@@ -26,6 +26,7 @@ export class ViewServicesService {
   private showConfirmEdit: boolean;
   private showConfirmCreate: boolean;
   private showAlert: boolean;
+  private showApiAlert: boolean;
 
   constructor() {
     this.serchOn = false;
@@ -49,6 +50,7 @@ export class ViewServicesService {
     this.showConfirmEdit = false;
     this.showConfirmCreate = false;
     this.showAlert = false;
+    this.showApiAlert = false;
   }
 
   getSearchOn() {
@@ -105,6 +107,10 @@ export class ViewServicesService {
 
   getShowAlert() {
     return this.showAlert;
+  }
+
+  getShowApiAlert() {
+    return this.showApiAlert;
   }
 
   changeSearchOn() {
@@ -176,6 +182,9 @@ export class ViewServicesService {
 
     } else if (option === 4) {
       this.showAlert = true;
+
+    } else if (option === 5) {
+      this.showApiAlert = true;
     }
   }
 
@@ -185,5 +194,6 @@ export class ViewServicesService {
     this.showConfirmEdit = false;
     this.showConfirmCreate = false;
     this.showAlert = false;
+    this.showApiAlert = false;
   }
 }

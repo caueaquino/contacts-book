@@ -1,6 +1,6 @@
 /* CSS Document */
 
-app-delete-dialog, app-favorite-dialog, app-edit-dialog, app-create-dialog, app-alert-dialog {
+app-delete-dialog, app-favorite-dialog, app-edit-dialog, app-create-dialog, app-alert-dialog, app-api-alert {
     height: 100%;
     width: 100%;
     display: flex;

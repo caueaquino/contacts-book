@@ -12,18 +12,57 @@ import { ApiServicesService } from '../services/api-services.service';
 })
 export class ViewAreaComponent implements OnInit {
 
+  pageIndex: number;
+  pageSize: number;
+  lowValue: number;
+  highValue: number;
+
   constructor(private dataServices: DataServicesService,
               private viewServices: ViewServicesService,
-              private apiServices: ApiServicesService) { }
+              private apiServices: ApiServicesService) {
+
+    this.pageIndex = 0;
+    this.pageSize = 10;
+    this.lowValue = 0;
+    this.highValue = 10;
+  }
 
   ngOnInit() {
   }
+
+getPaginatorData(event) {
+  console.log(event);
+  if (event.pageIndex === this.pageIndex + 1){
+    this.lowValue = this.lowValue + this.pageSize;
+    this.highValue =  this.highValue + this.pageSize;
+
+  } else if (event.pageIndex === this.pageIndex - 1) {
+    this.lowValue = this.lowValue - this.pageSize;
+    this.highValue =  this.highValue - this.pageSize;
+  }
+
+  this.pageIndex = event.pageIndex;
+}
 
   verifyRenderCard(contactFav: boolean) {
     if (this.viewServices.getIsFavoriteViewArea() && contactFav || !this.viewServices.getIsFavoriteViewArea()) {
       return true;
     }
     return false;
+  }
+
+  returnContactsCards(contacts) {
+    const auxContacts = [];
+
+    if (this.viewServices.getIsFavoriteViewArea()) {
+      for (const c of contacts) {
+        if (c.isFavorite) {
+          auxContacts.push(c);
+        }
+      }
+      return auxContacts;
+    }
+    return contacts;
   }
 
   favoriteContactCardButton(contactAux: ContactStruct) {

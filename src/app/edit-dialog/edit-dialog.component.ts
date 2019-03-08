@@ -22,10 +22,10 @@ export class EditDialogComponent implements OnInit {
   }
 
   confirmEdit() {
-    this.apiServices.updateContact(this.dataServices.getContact().id, this.dataServices.getContactForm()).subscribe(() => {
-    this.okEdit = true;
-    this.dataServices.setAllContact();
-    });
+    this.apiServices.updateContact(this.dataServices.getContact().id, this.dataServices.getContactForm()).subscribe(
+      success => (this.okEdit = true, this.dataServices.setAllContact()),
+      error => this.viewServices.chooseAlertToOpen(5)
+    );
   }
 
   cancelEdit() {

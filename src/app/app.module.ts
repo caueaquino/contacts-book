@@ -18,7 +18,7 @@ import {
   MatCheckboxModule,
   MatSlideToggleModule,
   MatSelectModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
 } from '@angular/material';
 
 import { MainBarComponent } from './main-bar/main-bar.component';
@@ -34,6 +34,7 @@ import { ContactInfoAreaComponent } from './contact-info-area/contact-info-area.
 import { CreateDialogComponent } from './create-dialog/create-dialog.component';
 import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
+import { ApiAlertComponent } from './api-alert/api-alert.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
     ContactInfoAreaComponent,
     CreateDialogComponent,
     EditDialogComponent,
-    AlertDialogComponent
+    AlertDialogComponent,
+    ApiAlertComponent
   ],
   imports: [
     BrowserModule,

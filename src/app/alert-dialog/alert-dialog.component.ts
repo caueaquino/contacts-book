@@ -9,8 +9,7 @@ import { ViewServicesService } from '../services/view-services.service';
 })
 export class AlertDialogComponent implements OnInit {
 
-  constructor(private viewServices: ViewServicesService,
-              private dataServices: DataServicesService) { }
+  constructor(private viewServices: ViewServicesService) { }
 
   ngOnInit() {
   }
