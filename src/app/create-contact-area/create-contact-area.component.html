@@ -5,7 +5,7 @@
 <form class="example-form" [formGroup]="formContact">
     <div class="example-container">
         <mat-form-field>
-            <input matInput placeholder="Url Avatar" formControlName="avatar">
+            <input matInput placeholder="Url Avatar" formControlName="info.avatar">
         </mat-form-field>
 
         <mat-form-field>
@@ -29,19 +29,19 @@
         </mat-form-field>
 
         <mat-form-field>
-            <input matInput placeholder="Company" formControlName="company" required>
+            <input matInput placeholder="Company" formControlName="info.company" required>
         </mat-form-field>
 
         <mat-form-field>
-            <input matInput placeholder="Address" formControlName="address">
+            <input matInput placeholder="Address" formControlName="info.address">
         </mat-form-field>
 
         <mat-form-field>
-            <input matInput placeholder="Phone Number" formControlName="phone">
+            <input matInput placeholder="Phone Number" formControlName="info.phone">
         </mat-form-field>
 
         <mat-form-field>
-            <input matInput placeholder="Comments" formControlName="comments">
+            <input matInput placeholder="Comments" formControlName="info.comments">
         </mat-form-field>
 
         <mat-slide-toggle #createIsFavorite formControlName="isFavorite">Favorite Contact</mat-slide-toggle>
