@@ -1,6 +1,6 @@
 <!-- HTML Document -->
 
-<section class="cards-container" *ngIf="dataServices.getContacts$() | async as contacts; else loading">
+<section class="cards-container" *ngIf="dataServices.contacts$ | async as contacts; else loading">
   <h3 *ngIf="contacts.length<=0">No Contact Was Found!</h3>
 
   <mat-card class="example-card" *ngFor="let contact of returnContactsCards(contacts) | slice: lowValue : highValue">

@@ -36,6 +36,7 @@ import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
 import { ApiAlertComponent } from './api-alert/api-alert.component';
 
+import { routing } from './app.routing';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { ApiAlertComponent } from './api-alert/api-alert.component';
     MatSelectModule,
     HttpClientModule,
     MatProgressSpinnerModule,
+    routing
   ],
   providers: [
     ViewServicesService,

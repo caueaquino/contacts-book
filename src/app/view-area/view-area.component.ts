@@ -31,8 +31,8 @@ export class ViewAreaComponent implements OnInit {
   }
 
 getPaginatorData(event) {
-  console.log(event);
-  if (event.pageIndex === this.pageIndex + 1){
+  // console.log(event);
+  if (event.pageIndex === this.pageIndex + 1) {
     this.lowValue = this.lowValue + this.pageSize;
     this.highValue =  this.highValue + this.pageSize;
 
