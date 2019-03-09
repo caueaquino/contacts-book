@@ -17,8 +17,6 @@ export interface OptionGender {
 })
 export class CreateContactAreaComponent implements OnInit {
 
-  private contactAux: ContactStruct;
-
   private formContact = this.formBuilder.group({
     firstName: [null, [Validators.required, Validators.minLength(3)]],
     lastName: [null, [Validators.required, Validators.minLength(3)]],
@@ -45,7 +43,6 @@ export class CreateContactAreaComponent implements OnInit {
   ];
 
   ngOnInit() {
-    this.contactAux = this.dataServices.getContact();
     this.setUpFieldsForm();
   }
 
@@ -83,7 +80,7 @@ export class CreateContactAreaComponent implements OnInit {
 // alterar formatto
   setUpFieldsForm() {
     if (this.viewServicesService.getIsEditViewArea()) {
-      this.formContact.patchValue(this.contactAux);
+      this.formContact.patchValue(this.dataServices.getContact());
     }
   }
 }
