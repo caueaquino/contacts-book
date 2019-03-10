@@ -1,4 +1,5 @@
 <!-- HTML Document -->
+<app-header-view-area></app-header-view-area>
 
 <section class="cards-container" *ngIf="dataServices.contacts$ | async as contacts; else loading">
   <h3 *ngIf="contacts.length<=0">No Contact Was Found!</h3>

@@ -7,7 +7,6 @@ import { CreateContactAreaComponent } from './create-contact-area/create-contact
 import { ContactInfoAreaComponent } from './contact-info-area/contact-info-area.component';
 
 const APP_ROUTES: Routes = [
-    
     { path: '', component: ViewAreaComponent},
     { path: 'CreateContact', component: CreateContactAreaComponent},
     { path: 'ViewContact', component: ContactInfoAreaComponent},
