@@ -7,17 +7,17 @@
   <mat-menu #menu="matMenu">
     <h3>Menu</h3>
     <h4>Views</h4>
-    <button mat-menu-item (click)='viewServicesService.chooseViewAreaType(0)'>
+    <button mat-menu-item routerLink="" (click)='contactsMenuButton()'>
       <mat-icon>contacts</mat-icon>
       <span>Contacts</span>
     </button>
-    <button mat-menu-item (click)='viewServicesService.chooseViewAreaType(1)'>
+    <button mat-menu-item routerLink="" (click)='favoritesMenuButton()'>
       <mat-icon>star</mat-icon>
       <span>Favorites</span>
     </button>
     <br>
     <h4>Services</h4>
-    <button mat-menu-item (click)='viewServicesService.changeWhatIsShowing(1)' [disabled]=" verifyButtonCreateContactMenu() ? 'true' : 'false' ">
+    <button mat-menu-item routerLink="CreateContact">
       <mat-icon>person_add</mat-icon>
       <span>Create Contact</span>
     </button>
@@ -25,7 +25,7 @@
 
   <h1>Contacts Book</h1>
   <div>
-    <button mat-button (click)='viewServicesService.changeSearchOn()' class="btSearch"><mat-icon class="material-icons md-36 md-light">search</mat-icon></button>
+    <button mat-button (click)='searchButton()' class="btSearch"><mat-icon class="material-icons md-36 md-light">search</mat-icon></button>
   </div>
 </mat-toolbar>
 

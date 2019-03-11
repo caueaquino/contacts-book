@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { ApiServicesService } from './../services/api-services.service';
 import { ViewServicesService } from './../services/view-services.service';
 import { Component, OnInit } from '@angular/core';
@@ -14,7 +15,8 @@ export class CreateDialogComponent implements OnInit {
 
   constructor(private dataServices: DataServicesService,
               private viewServices: ViewServicesService,
-              private apiServices: ApiServicesService) {
+              private apiServices: ApiServicesService,
+              private location: Location) {
     this.okCreate = false;
   }
   ngOnInit() {
@@ -35,6 +37,6 @@ export class CreateDialogComponent implements OnInit {
   okCreateButton() {
     this.okCreate = false;
     this.viewServices.resetAlerts();
-    this.viewServices.closeEditArea();
+    this.location.back();
   }
 }

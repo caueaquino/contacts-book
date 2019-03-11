@@ -18,7 +18,8 @@ import {
   MatCheckboxModule,
   MatSlideToggleModule,
   MatSelectModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatDialogModule
 } from '@angular/material';
 
 import { MainBarComponent } from './main-bar/main-bar.component';
@@ -28,13 +29,13 @@ import { HeaderViewAreaComponent } from './header-view-area/header-view-area.com
 import { ViewAreaComponent } from './view-area/view-area.component';
 import { ViewServicesService } from './services/view-services.service';
 import { DataServicesService } from './services/data-services.service';
-import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 import { FavoriteDialogComponent } from './favorite-dialog/favorite-dialog.component';
-import { ContactInfoAreaComponent } from './contact-info-area/contact-info-area.component';
+import { ContactInfoAreaComponent, DeleteDialog2Component } from './contact-info-area/contact-info-area.component';
 import { CreateDialogComponent } from './create-dialog/create-dialog.component';
 import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
 import { ApiAlertComponent } from './api-alert/api-alert.component';
+import { DeleteDialogComponent } from './view-area/view-area.component';
 
 import { routing } from './app.routing';
 
@@ -46,13 +47,14 @@ import { routing } from './app.routing';
     CreateContactAreaComponent,
     HeaderViewAreaComponent,
     ViewAreaComponent,
-    DeleteDialogComponent,
     FavoriteDialogComponent,
     ContactInfoAreaComponent,
     CreateDialogComponent,
     EditDialogComponent,
     AlertDialogComponent,
-    ApiAlertComponent
+    ApiAlertComponent,
+    DeleteDialogComponent,
+    DeleteDialog2Component
   ],
   imports: [
     BrowserModule,
@@ -73,15 +75,17 @@ import { routing } from './app.routing';
     MatSelectModule,
     HttpClientModule,
     MatProgressSpinnerModule,
+    MatDialogModule,
     routing
   ],
   providers: [
     ViewServicesService,
     DataServicesService
   ],
-  // entryComponents: [
-  //   MatDialogModule
-  // ],
+  entryComponents: [
+    DeleteDialogComponent,
+    DeleteDialog2Component
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

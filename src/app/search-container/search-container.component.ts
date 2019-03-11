@@ -5,7 +5,8 @@ import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { DataServicesService } from '../services/data-services.service';
 import { ViewServicesService } from '../services/view-services.service';
-import { stringify } from '@angular/core/src/util';
+import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 /**
  * @title Highlight the first autocomplete option
@@ -22,7 +23,9 @@ export class SearchContainerComponent implements OnInit {
   private filteredContacts: Observable<any>;
 
   constructor(private dataServices: DataServicesService,
-              private viewServices: ViewServicesService) {
+              private viewServices: ViewServicesService,
+              private location: Location,
+              private route: Router) {
     this.getCompleteNames();
   }
 
@@ -57,6 +60,5 @@ export class SearchContainerComponent implements OnInit {
   buttonContactSearch(contactAux: ContactStruct) {
     this.viewServices.changeSearchOn();
     this.dataServices.setContact(contactAux);
-    this.viewServices.changeWhatIsShowing(2);
   }
 }

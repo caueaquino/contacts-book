@@ -1,5 +1,6 @@
 import { ContactStruct } from './../services/contactStruct';
 import { Component, OnInit} from '@angular/core';
+import { MatDialog, MatDialogRef} from '@angular/material';
 
 import { DataServicesService } from '../services/data-services.service';
 import { ViewServicesService } from '../services/view-services.service';
@@ -19,7 +20,8 @@ export class ViewAreaComponent implements OnInit {
 
   constructor(private dataServices: DataServicesService,
               private viewServices: ViewServicesService,
-              private apiServices: ApiServicesService) {
+              private apiServices: ApiServicesService,
+              private dialog: MatDialog) {
 
     this.pageIndex = 0;
     this.pageSize = 10;
@@ -72,16 +74,55 @@ getPaginatorData(event) {
 
   viewContactCardButton(contactAux: ContactStruct) {
     this.dataServices.setContact(contactAux);
-    this.viewServices.changeWhatIsShowing(2);
   }
 
   deleteContactCardButton(contactAux: ContactStruct) {
     this.dataServices.setContact(contactAux);
-    this.viewServices.chooseAlertToOpen(0);
+    const dialogRef = this.dialog.open(DeleteDialogComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.pageIndex = 0;
+      this.pageSize = 10;
+      this.lowValue = 0;
+      this.highValue = 10;
+    });
+
   }
 
   editContactCardButton(contactToEdit: ContactStruct) {
     this.dataServices.setContact(contactToEdit);
-    this.viewServices.chooseEditArea();
+  }
+}
+
+@Component({
+  selector: 'app-delete-dialog',
+  templateUrl: '../dialogs/delete-dialog/delete-dialog.component.html',
+  styleUrls: ['../dialogs/delete-dialog/delete-dialog.component.css']
+})
+export class DeleteDialogComponent implements OnInit {
+
+  private okDelete: boolean;
+
+  constructor(private viewServices: ViewServicesService,
+              private apiServices: ApiServicesService,
+              private dataServices: DataServicesService,
+              private dialogRef: MatDialogRef<DeleteDialogComponent>) {
+
+      this.okDelete = false;
+  }
+
+  ngOnInit() {
+  }
+
+  confirmDelete() {
+    this.apiServices.deleteContact(this.dataServices.getContact().id).subscribe(
+      success => (this.okDelete = true, this.dataServices.setAllContact()),
+      error => this.viewServices.chooseAlertToOpen(5)
+    );
+  }
+
+  okDeleteButton() {
+    this.dialogRef.close();
+    ViewAreaComponent.call(ViewAreaComponent);
   }
 }

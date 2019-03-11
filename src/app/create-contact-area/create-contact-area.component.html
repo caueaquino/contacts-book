@@ -1,11 +1,11 @@
 <!-- HTML Document -->
 
-<h2 [innerText]=" viewServicesService.getIsEditViewArea() ? 'Edit Contact' : 'Create Contact' "></h2>
+<h2 [innerText]=" true ? 'Edit Contact' : 'Create Contact' "></h2>
 
 <form class="example-form" [formGroup]="formContact">
     <div class="example-container">
-        <mat-form-field>
-            <input matInput placeholder="Url Avatar" formControlName="info.avatar">
+        <mat-form-field formGroupName="info">
+            <input matInput placeholder="Url Avatar" formControlName="avatar">
         </mat-form-field>
 
         <mat-form-field>
@@ -28,28 +28,25 @@
             </mat-select>
         </mat-form-field>
 
-        <mat-form-field>
-            <input matInput placeholder="Company" formControlName="info.company" required>
+        <mat-form-field formGroupName="info">
+            <input matInput placeholder="Company" formControlName="company" required>
         </mat-form-field>
 
-        <mat-form-field>
-            <input matInput placeholder="Address" formControlName="info.address">
+        <mat-form-field formGroupName="info">
+            <input matInput placeholder="Address" formControlName="address">
         </mat-form-field>
 
-        <mat-form-field>
-            <input matInput placeholder="Phone Number" formControlName="info.phone">
+        <mat-form-field formGroupName="info">
+            <input matInput placeholder="Phone Number" formControlName="phone">
         </mat-form-field>
 
-        <mat-form-field>
-            <input matInput placeholder="Comments" formControlName="info.comments">
+        <mat-form-field formGroupName="info">
+            <input matInput placeholder="Comments" formControlName="comments">
         </mat-form-field>
 
         <mat-slide-toggle #createIsFavorite formControlName="isFavorite">Favorite Contact</mat-slide-toggle>
         
-        <button *ngIf=!viewServicesService.getIsEditViewArea() mat-raised-button (click)="confirmButtonCreateContact()"><mat-icon>check</mat-icon> Confirm</button>
-        <button *ngIf=!viewServicesService.getIsEditViewArea() mat-raised-button (click)="cancelButtonCreateContact()"><mat-icon>close</mat-icon> Cancel</button>
-
-        <button *ngIf=viewServicesService.getIsEditViewArea() mat-raised-button (click)="confirmButtonEditContact()"><mat-icon>check</mat-icon> Confirm</button>
-        <button *ngIf=viewServicesService.getIsEditViewArea() mat-raised-button (click)="cancelButtonEditContact()"><mat-icon>close</mat-icon> Cancel</button>
+        <button *ngIf="true" mat-raised-button (click)="confirmButton()"><mat-icon>check</mat-icon> Confirm</button>
+        <button mat-raised-button routerLink=""><mat-icon>close</mat-icon> Cancel</button>
     </div>
 </form>

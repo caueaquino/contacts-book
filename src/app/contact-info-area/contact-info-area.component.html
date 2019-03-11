@@ -5,9 +5,9 @@
 <div class="contact-info-container">
     <section>
         <div class="container-back-view">
-            <button mat-button (click)="viewServices.changeWhatIsShowing(0)"><mat-icon class="back-icon">arrow_back</mat-icon> Back</button>
+            <button mat-button routerLink=""><mat-icon class="back-icon">arrow_back</mat-icon> Back</button>
         </div>
-        <button class="action-button" (click)="editContactInfoButton()"><mat-icon>edit</mat-icon></button>
+        <button class="action-button" (click)="editContactInfoButton()" routerLink="EditContact"><mat-icon>edit</mat-icon></button>
 
         <button class="action-button" (click)="deleteContactInfoButton()"><mat-icon>delete</mat-icon></button>
         

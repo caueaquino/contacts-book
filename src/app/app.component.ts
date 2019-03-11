@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
   }
 
   verifyConfirmAlerts() {
-    if (this.viewServicesService.getShowConfirmDelete() || this.viewServicesService.getShowConfirmFavorite()) {
+    if (this.viewServicesService.getShowConfirmFavorite()) {
       return true;
     }
     return false;

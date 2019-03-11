@@ -14,12 +14,15 @@ export class MainBarComponent implements OnInit {
   ngOnInit() {
   }
 
-  verifyButtonCreateContactMenu() {
-    if (this.viewServicesService.getShowCreateContactArea() || this.viewServicesService.getIsEditViewArea()) {
-      return true;
+  contactsMenuButton() {
+    this.viewServicesService.chooseViewAreaType(0);
+  }
 
-    } else {
-      return false;
-    }
+  favoritesMenuButton() {
+    this.viewServicesService.chooseViewAreaType(1);
+  }
+
+  searchButton() {
+    this.viewServicesService.changeSearchOn();
   }
 }

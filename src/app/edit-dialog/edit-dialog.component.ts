@@ -2,6 +2,7 @@ import { ApiServicesService } from './../services/api-services.service';
 import { ViewServicesService } from './../services/view-services.service';
 import { Component, OnInit } from '@angular/core';
 import { DataServicesService } from '../services/data-services.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-edit-dialog',
@@ -14,7 +15,8 @@ export class EditDialogComponent implements OnInit {
 
   constructor(private dataServices: DataServicesService,
               private viewServices: ViewServicesService,
-              private apiServices: ApiServicesService) {
+              private apiServices: ApiServicesService,
+              private location: Location) {
     this.okEdit = false;
   }
 
@@ -36,6 +38,6 @@ export class EditDialogComponent implements OnInit {
   okEditButton() {
     this.okEdit = false;
     this.viewServices.resetAlerts();
-    this.viewServices.closeEditArea();
+    this.location.back();
   }
 }
