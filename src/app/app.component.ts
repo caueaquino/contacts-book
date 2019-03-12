@@ -17,10 +17,4 @@ export class AppComponent implements OnInit {
     this.dataServices.setAllContact();
   }
 
-  verifyConfirmAlerts() {
-    if (this.viewServicesService.getShowConfirmFavorite()) {
-      return true;
-    }
-    return false;
-  }
 }

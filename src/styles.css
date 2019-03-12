@@ -16,7 +16,7 @@ body {
     background-size: cover;
 }
 
-app-favorite-dialog, app-alert-dialog, app-api-alert {
+app-api-alert {
     height: 100%;
     width: 100%;
     display: flex;

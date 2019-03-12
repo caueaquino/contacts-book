@@ -57,7 +57,7 @@ export class ContactInfoAreaComponent implements OnInit {
 
   favoriteContactInfoButton() {
     this.dataServices.setContact(this.infoContact);
-    this.viewServices.chooseAlertToOpen(1);
+    this.dialog.open(FavoriteDialog2Component);
   }
 }
 
@@ -90,5 +90,45 @@ export class DeleteDialog2Component implements OnInit {
 
   okDeleteButton() {
     this.dialogRef.close();
+  }
+}
+
+@Component({
+  selector: 'app-favorite-dialog',
+  templateUrl: '../dialogs/favorite-dialog/favorite-dialog.component.html',
+  styleUrls: ['../dialogs/favorite-dialog/favorite-dialog.component.css']
+})
+export class FavoriteDialog2Component implements OnInit {
+
+  private okFavorite: boolean;
+
+  constructor(private viewServices: ViewServicesService,
+              private apiServices: ApiServicesService,
+              private dataServices: DataServicesService,
+              private dialogRef: MatDialogRef<FavoriteDialog2Component>) {
+    this.okFavorite = false;
+  }
+
+  ngOnInit() {
+  }
+
+  confirmFavorite() {
+    const contactAux = this.dataServices.getContact();
+
+    contactAux.isFavorite = !contactAux.isFavorite;
+
+    this.apiServices.updateContactFavorite(contactAux).subscribe(
+      success => this.okFavorite = true,
+      error => (this.viewServices.chooseAlertToOpen(5), this.dataServices.setAllContact())
+    );
+  }
+
+  cancelButtonFavorite() {
+    this.dialogRef.close();
+  }
+
+  okFavoriteButton() {
+    this.dialogRef.close();
+    this.okFavorite = false;
   }
 }

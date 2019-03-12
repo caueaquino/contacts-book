@@ -74,7 +74,7 @@ export class CreateContactAreaComponent implements OnInit {
       const dialogRef = this.dialog.open(CreateDialogComponent);
 
     } else {
-      this.viewServicesService.chooseAlertToOpen(4);
+      const dialogRef = this.dialog.open(AlertDialogComponent);
     }
   }
 
@@ -84,7 +84,7 @@ export class CreateContactAreaComponent implements OnInit {
       const dialogRef = this.dialog.open(EditDialogComponent);
 
     } else {
-      this.viewServicesService.chooseAlertToOpen(4);
+      const dialogRef = this.dialog.open(AlertDialogComponent);
     }
   }
 
@@ -169,5 +169,23 @@ export class EditDialogComponent implements OnInit {
     this.dialogRef.close();
     this.okEdit = false;
     this.location.back();
+  }
+}
+
+@Component({
+  selector: 'app-alert-dialog',
+  templateUrl: '../dialogs/alert-dialog/alert-dialog.component.html',
+  styleUrls: ['../dialogs/alert-dialog/alert-dialog.component.css']
+})
+export class AlertDialogComponent implements OnInit {
+
+  constructor(private viewServices: ViewServicesService,
+              private dialogRef: MatDialogRef<AlertDialogComponent>) { }
+
+  ngOnInit() {
+  }
+
+  okAlertButton() {
+    this.dialogRef.close();
   }
 }

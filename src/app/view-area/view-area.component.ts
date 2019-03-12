@@ -5,6 +5,7 @@ import { MatDialog, MatDialogRef} from '@angular/material';
 import { DataServicesService } from '../services/data-services.service';
 import { ViewServicesService } from '../services/view-services.service';
 import { ApiServicesService } from '../services/api-services.service';
+import { EditDialogComponent } from '../create-contact-area/create-contact-area.component';
 
 @Component({
   selector: 'app-view-area',
@@ -69,7 +70,7 @@ getPaginatorData(event) {
 
   favoriteContactCardButton(contactAux: ContactStruct) {
     this.dataServices.setContact(contactAux);
-    this.viewServices.chooseAlertToOpen(1);
+    this.dialog.open(EditDialogComponent);
   }
 
   viewContactCardButton(contactAux: ContactStruct) {
@@ -124,5 +125,45 @@ export class DeleteDialogComponent implements OnInit {
   okDeleteButton() {
     this.dialogRef.close();
     ViewAreaComponent.call(ViewAreaComponent);
+  }
+}
+
+@Component({
+  selector: 'app-favorite-dialog',
+  templateUrl: '../dialogs/favorite-dialog/favorite-dialog.component.html',
+  styleUrls: ['../dialogs/favorite-dialog/favorite-dialog.component.css']
+})
+export class FavoriteDialogComponent implements OnInit {
+
+  private okFavorite: boolean;
+
+  constructor(private viewServices: ViewServicesService,
+              private apiServices: ApiServicesService,
+              private dataServices: DataServicesService,
+              private dialogRef: MatDialogRef<FavoriteDialogComponent>) {
+    this.okFavorite = false;
+  }
+
+  ngOnInit() {
+  }
+
+  confirmFavorite() {
+    const contactAux = this.dataServices.getContact();
+
+    contactAux.isFavorite = !contactAux.isFavorite;
+
+    this.apiServices.updateContactFavorite(contactAux).subscribe(
+      success => this.okFavorite = true,
+      error => (this.viewServices.chooseAlertToOpen(5), this.dataServices.setAllContact())
+    );
+  }
+
+  cancelButtonFavorite() {
+    this.dialogRef.close();
+  }
+
+  okFavoriteButton() {
+    this.dialogRef.close();
+    this.okFavorite = false;
   }
 }
