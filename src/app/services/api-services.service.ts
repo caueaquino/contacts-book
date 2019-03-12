@@ -20,10 +20,7 @@ export class ApiServicesService {
   constructor(private http: HttpClient) { }
 
   public getAllContacts() {
-    return this.http.get<ContactStruct[]>(this.API)
-      .pipe(
-        tap(console.log)
-      );
+    return this.http.get<ContactStruct[]>(this.API);
   }
 
   public deleteContact(id: string) {
@@ -33,27 +30,27 @@ export class ApiServicesService {
   }
 
   public createContact(contactAux) {
-    const postContact = this.setUpDataContact(contactAux);
+    const postContact = this.setContactStruct(contactAux);
 
     return this.http.post(this.API, postContact, httpOptions);
   }
 
   public updateContact(contactAux) {
-    const putContact = this.setUpDataContact(contactAux);
+    const putContact = this.setContactStruct(contactAux);
 
     return this.http.put(`${this.API}/${contactAux.id}`, putContact, httpOptions);
   }
 
   public updateContactFavorite(contactAux: ContactStruct) {
 
-    const putContact = this.setContactData(contactAux);
+    const putContact = this.setContactStruct(contactAux);
 
     const url = `${this.API}/${contactAux.id}`;
 
     return this.http.put(url, putContact, httpOptions);
   }
 
-  setContactData(contactAux) {
+  setContactStruct(contactAux) {
     const Contact = {
       firstName: contactAux.firstName,
       lastName: contactAux.lastName,

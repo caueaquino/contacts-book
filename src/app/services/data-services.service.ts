@@ -12,7 +12,7 @@ export class DataServicesService {
 
   private contactForm;
 
-  private contacts$: Observable<ContactStruct[]>;
+  contacts$: Observable<ContactStruct[]>;
 
   constructor(private apiServices: ApiServicesService) { }
 

@@ -1,10 +1,10 @@
 <!-- HTML Document -->
 
-<button mat-button (click)='viewServices.changeSearchOn()' class="btSearch"><mat-icon class="material-icons md-36 md-light">arrow_back</mat-icon></button>
+<button mat-button (click)='backSearch()' class="btSearch"><mat-icon class="material-icons md-36 md-light">arrow_back</mat-icon></button>
 
-<input #searchContact type="text" placeholder="Search Contact" aria-label="Number" [formControl]="myControl" [matAutocomplete]="auto" [style.focus]="viewServices.getSearchOn()">
+<input #searchContact type="text" placeholder="Search Contact" aria-label="Number" [formControl]="myControl" [matAutocomplete]="auto">
 <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
   <mat-option *ngFor="let contact of filteredContacts | async" (click)="buttonContactSearch(contact)" value='{{contact.firstName}} {{contact.lastName}}'>
-    <li><img [src]=" verifyAvatar(contact) ? contact.info.avatar : '../../assets/images/alt-avatar.png' " height="80px" width="80px"><span>{{contact.firstName}} {{contact.lastName}}</span></li>
+    <li><img [src]=" contact.info.avatar === '' || contact.info.avatar === null ? '../../assets/images/alt-avatar.png' : contact.info.avatar  " height="80px" width="80px"><span>{{contact.firstName}} {{contact.lastName}}</span></li>
   </mat-option>
 </mat-autocomplete>

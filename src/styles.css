@@ -16,6 +16,25 @@ body {
     background-size: cover;
 }
 
+app-api-alert {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    background-color: rgba(76, 0, 255, 0.171);
+    z-index: 11;
+}
+
+app-create-contact-area, app-contact-info-area, app-header-view-area, app-view-area {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
 input:focus {
     outline-style: none;
 }

@@ -1,16 +1,6 @@
 <!-- HTML Document -->
 
-<app-delete-dialog  *ngIf="viewServicesService.getShowConfirmDelete()"></app-delete-dialog>
-<app-favorite-dialog  *ngIf="viewServicesService.getShowConfirmFavorite()"></app-favorite-dialog>
-<app-edit-dialog *ngIf="viewServicesService.getShowConfirmEdit()"></app-edit-dialog>
-<app-create-dialog *ngIf="viewServicesService.getShowConfirmCreate()"></app-create-dialog>
-<app-alert-dialog *ngIf="viewServicesService.getShowAlert()"></app-alert-dialog>
 <app-api-alert *ngIf="viewServicesService.getShowApiAlert()"></app-api-alert>
 
 <app-main-bar></app-main-bar>
-<div class="view-area-container" *ngIf="viewServicesService.getShowViewArea()">
-    <app-header-view-area></app-header-view-area>
-    <app-view-area></app-view-area>
-</div>
-<app-create-contact-area *ngIf="viewServicesService.getShowCreateContactArea()"></app-create-contact-area>
-<app-contact-info-area *ngIf=" viewServicesService.getShowInfoContactArea() "></app-contact-info-area>
+<router-outlet></router-outlet>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 
 import { ViewServicesService } from './../services/view-services.service';
 
@@ -14,12 +14,7 @@ export class MainBarComponent implements OnInit {
   ngOnInit() {
   }
 
-  verifyButtonCreateContactMenu() {
-    if (this.viewServicesService.getShowCreateContactArea() || this.viewServicesService.getIsEditViewArea()) {
-      return true;
-
-    } else {
-      return false;
-    }
+  searchButton() {
+    this.viewServicesService.changeSearchOn();
   }
 }
