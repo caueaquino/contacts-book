@@ -24,15 +24,17 @@ import {
 
 import { MainBarComponent } from './main-bar/main-bar.component';
 import { SearchContainerComponent } from './search-container/search-container.component';
-import { CreateContactAreaComponent } from './create-contact-area/create-contact-area.component';
+
+import { CreateContactAreaComponent,
+         CreateDialogComponent,
+         EditDialogComponent } from './create-contact-area/create-contact-area.component';
+
 import { HeaderViewAreaComponent } from './header-view-area/header-view-area.component';
 import { ViewAreaComponent } from './view-area/view-area.component';
 import { ViewServicesService } from './services/view-services.service';
 import { DataServicesService } from './services/data-services.service';
 import { FavoriteDialogComponent } from './favorite-dialog/favorite-dialog.component';
 import { ContactInfoAreaComponent, DeleteDialog2Component } from './contact-info-area/contact-info-area.component';
-import { CreateDialogComponent } from './create-dialog/create-dialog.component';
-import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
 import { ApiAlertComponent } from './api-alert/api-alert.component';
 import { DeleteDialogComponent } from './view-area/view-area.component';
@@ -49,12 +51,12 @@ import { routing } from './app.routing';
     ViewAreaComponent,
     FavoriteDialogComponent,
     ContactInfoAreaComponent,
-    CreateDialogComponent,
     EditDialogComponent,
     AlertDialogComponent,
     ApiAlertComponent,
     DeleteDialogComponent,
-    DeleteDialog2Component
+    DeleteDialog2Component,
+    CreateDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -84,7 +86,9 @@ import { routing } from './app.routing';
   ],
   entryComponents: [
     DeleteDialogComponent,
-    DeleteDialog2Component
+    DeleteDialog2Component,
+    CreateDialogComponent,
+    EditDialogComponent
   ],
   bootstrap: [AppComponent]
 })
