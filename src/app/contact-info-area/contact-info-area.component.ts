@@ -5,6 +5,7 @@ import { ContactStruct } from '../services/contactStruct';
 import { GeneratedFile } from '@angular/compiler';
 import { ApiServicesService } from '../services/api-services.service';
 import { MatDialog, MatDialogRef } from '@angular/material';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-contact-info-area',
@@ -17,15 +18,20 @@ export class ContactInfoAreaComponent implements OnInit {
 
   private genderInfo: string;
 
+  private avatarExist = true;
+
   constructor(private dataServices: DataServicesService,
               private viewServices: ViewServicesService,
-
+              private route: ActivatedRoute,
               private dialog: MatDialog) {
-    this.infoContact = dataServices.getContact();
-    this.setGenderInfo();
   }
 
   ngOnInit() {
+    this.route.params.subscribe(() => {
+      this.infoContact = this.dataServices.getContact();
+      this.setGenderInfo();
+      this.avatarExist = this.verifyAvatar(this.infoContact);
+    });
   }
 
   verifyAvatar(contactAux: ContactStruct) {

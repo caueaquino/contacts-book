@@ -20,10 +20,7 @@ export class ApiServicesService {
   constructor(private http: HttpClient) { }
 
   public getAllContacts() {
-    return this.http.get<ContactStruct[]>(this.API)
-      .pipe(
-        tap(console.log)
-      );
+    return this.http.get<ContactStruct[]>(this.API);
   }
 
   public deleteContact(id: string) {

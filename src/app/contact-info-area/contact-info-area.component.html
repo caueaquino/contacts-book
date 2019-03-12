@@ -11,10 +11,10 @@
 
         <button class="action-button" (click)="deleteContactInfoButton()"><mat-icon>delete</mat-icon></button>
         
-        <button class="action-button" (click)="favoriteContactInfoButton()"><mat-icon [innerText]=" infoContact.isFavorite===true ? 'star' : 'star_border' "></mat-icon></button>
+        <button class="action-button" (click)="favoriteContactInfoButton()"><mat-icon [innerText]=" infoContact.isFavorite ? 'star' : 'star_border' "></mat-icon></button>
     </section>
     
-    <img [src]=" verifyAvatar(infoContact) ? infoContact.info.avatar : '../../assets/images/alt-avatar.png' " alt="avatar-icon" height="200px" width="200px">
+    <img [src]=" avatarExist ? infoContact.info.avatar : '../../assets/images/alt-avatar.png' " alt="avatar-icon" height="200px" width="200px">
     <span> Fisrt Name: {{ infoContact.firstName }}</span>
     <span> Last Name: {{ infoContact.lastName }}</span>
     <span> Email: {{ infoContact.email }}</span>

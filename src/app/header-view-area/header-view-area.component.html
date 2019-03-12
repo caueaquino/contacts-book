@@ -3,4 +3,4 @@
 <div class="container-create-contact-button">
   <button routerLink="CreateContact"><mat-icon>person_add</mat-icon></button>
 </div>
-<h2 [innerText]=" viewServicesService.getIsFavoriteViewArea() ? 'Favorites' : 'Contacts' "></h2>
+<h2 [innerText]=" isFavorite ? 'Favorites' : 'Contacts' "></h2>

@@ -6,6 +6,7 @@ import { DataServicesService } from '../services/data-services.service';
 import { ViewServicesService } from '../services/view-services.service';
 import { ApiServicesService } from '../services/api-services.service';
 import { EditDialogComponent } from '../create-contact-area/create-contact-area.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-area',
@@ -19,15 +20,23 @@ export class ViewAreaComponent implements OnInit {
   lowValue: number;
   highValue: number;
 
+  private cardContacts = null;
+
   constructor(private dataServices: DataServicesService,
               private viewServices: ViewServicesService,
               private apiServices: ApiServicesService,
-              private dialog: MatDialog) {
+              private dialog: MatDialog,
+              private route: Router) {
 
     this.pageIndex = 0;
     this.pageSize = 10;
     this.lowValue = 0;
     this.highValue = 10;
+
+    this.dataServices.getContacts$().subscribe((c) => {
+      this.cardContacts = c;
+      this.cardContacts = this.returnContactsCards();
+    });
   }
 
   ngOnInit() {
@@ -47,25 +56,18 @@ getPaginatorData(event) {
   this.pageIndex = event.pageIndex;
 }
 
-  verifyRenderCard(contactFav: boolean) {
-    if (this.viewServices.getIsFavoriteViewArea() && contactFav || !this.viewServices.getIsFavoriteViewArea()) {
-      return true;
-    }
-    return false;
-  }
-
-  returnContactsCards(contacts) {
+  returnContactsCards() {
     const auxContacts = [];
 
-    if (this.viewServices.getIsFavoriteViewArea()) {
-      for (const c of contacts) {
+    if (this.route.isActive('Favorites', true)) {
+      for (const c of this.cardContacts) {
         if (c.isFavorite) {
           auxContacts.push(c);
         }
       }
       return auxContacts;
     }
-    return contacts;
+    return this.cardContacts;
   }
 
   favoriteContactCardButton(contactAux: ContactStruct) {
@@ -75,19 +77,18 @@ getPaginatorData(event) {
 
   viewContactCardButton(contactAux: ContactStruct) {
     this.dataServices.setContact(contactAux);
+    this.route.navigate(['/ViewContact', contactAux.id]);
   }
 
   deleteContactCardButton(contactAux: ContactStruct) {
     this.dataServices.setContact(contactAux);
     const dialogRef = this.dialog.open(DeleteDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
       this.pageIndex = 0;
       this.pageSize = 10;
       this.lowValue = 0;
       this.highValue = 10;
     });
-
   }
 
   editContactCardButton(contactToEdit: ContactStruct) {

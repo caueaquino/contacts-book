@@ -5,43 +5,30 @@ import { Injectable } from '@angular/core';
 })
 export class ViewServicesService {
 
-  serchOn: boolean;
-
-  isFavoriteViewArea: boolean;
+  searchOn: boolean;
 
   private showApiAlert: boolean;
 
   constructor() {
-    this.serchOn = false;
-
-    this.isFavoriteViewArea = false;
+    this.searchOn = false;
 
     this.showApiAlert = false;
   }
 
   getSearchOn() {
-    return this.serchOn;
-  }
-
-  getIsFavoriteViewArea() {
-    return this.isFavoriteViewArea;
+    return this.searchOn;
   }
 
   getShowApiAlert() {
     return this.showApiAlert;
   }
 
-  changeSearchOn() {
-    this.serchOn = !this.serchOn;
+  searchOff() {
+    this.searchOn = false;
   }
 
-  chooseViewAreaType(option: number) {
-    if (option === 1) {
-      this.isFavoriteViewArea = true;
-
-    } else {
-      this.isFavoriteViewArea = false;
-    }
+  changeSearchOn() {
+    this.searchOn = !this.searchOn;
   }
 
   chooseAlertToOpen(option: number) {

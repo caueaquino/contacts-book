@@ -1,6 +1,6 @@
 <!-- HTML Document -->
 
-<h2 [innerText]=" true ? 'Edit Contact' : 'Create Contact' "></h2>
+<h2 [innerText]=" isEdit ? 'Edit Contact' : 'Create Contact' "></h2>
 
 <form class="example-form" [formGroup]="formContact">
     <div class="example-container">
@@ -47,6 +47,6 @@
         <mat-slide-toggle #createIsFavorite formControlName="isFavorite">Favorite Contact</mat-slide-toggle>
         
         <button *ngIf="true" mat-raised-button (click)="confirmButton()"><mat-icon>check</mat-icon> Confirm</button>
-        <button mat-raised-button routerLink=""><mat-icon>close</mat-icon> Cancel</button>
+        <button mat-raised-button (click)="location.back()"><mat-icon>close</mat-icon> Cancel</button>
     </div>
 </form>

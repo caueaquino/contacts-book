@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 
 import { ViewServicesService } from './../services/view-services.service';
 
@@ -12,14 +12,6 @@ export class MainBarComponent implements OnInit {
   constructor(private viewServicesService: ViewServicesService) { }
 
   ngOnInit() {
-  }
-
-  contactsMenuButton() {
-    this.viewServicesService.chooseViewAreaType(0);
-  }
-
-  favoritesMenuButton() {
-    this.viewServicesService.chooseViewAreaType(1);
   }
 
   searchButton() {

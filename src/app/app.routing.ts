@@ -6,11 +6,19 @@ import { CreateContactAreaComponent } from './create-contact-area/create-contact
 import { ContactInfoAreaComponent } from './contact-info-area/contact-info-area.component';
 
 const APP_ROUTES: Routes = [
-    { path: '', component: ViewAreaComponent},
+    { path: '', redirectTo: 'Contacts', pathMatch: 'full'},
+    { path: 'Contacts/CreateContact', redirectTo: 'CreateContact', pathMatch: 'full'},
+    { path: 'Favorites/CreateContact', redirectTo: 'CreateContact', pathMatch: 'full'},
+    { path: 'Contacts/EditContact', redirectTo: 'EditContact', pathMatch: 'full'},
+    { path: 'Favorites/EditContact', redirectTo: 'EditContact', pathMatch: 'full'},
+    { path: 'Contacts/ViewContact/:id', redirectTo: 'ViewContact/:id', pathMatch: 'full'},
+    { path: 'Favorites/ViewContact/:id', redirectTo: 'ViewContact/:id', pathMatch: 'full'},
+    { path: 'ViewContact/:id/EditContact', redirectTo: 'EditContact', pathMatch: 'full'},
+    { path: 'Contacts', component: ViewAreaComponent},
+    { path: 'Favorites', component: ViewAreaComponent},
     { path: 'CreateContact', component: CreateContactAreaComponent},
     { path: 'EditContact', component: CreateContactAreaComponent},
-    { path: 'ViewContact', component: ContactInfoAreaComponent},
-    { path: 'ViewContact/EditContact', component: CreateContactAreaComponent}
+    { path: 'ViewContact/:id', component: ContactInfoAreaComponent},
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(APP_ROUTES, { onSameUrlNavigation: 'reload' });

@@ -38,6 +38,8 @@ export class CreateContactAreaComponent implements OnInit {
     isFavorite: [false]
   });
 
+  private isEdit = false;
+
   private contactAux;
 
   constructor(private viewServicesService: ViewServicesService,
@@ -92,6 +94,7 @@ export class CreateContactAreaComponent implements OnInit {
     if (this.route.isActive('EditContact', true) || this.route.isActive('ViewContact/EditContact', true)) {
       this.contactAux = this.dataServices.getContact();
       this.formContact.patchValue(this.contactAux);
+      this.isEdit = true;
     }
   }
 }
@@ -117,7 +120,7 @@ export class CreateDialogComponent implements OnInit {
 
   confirmCreate() {
     this.apiServices.createContact(this.dataServices.getContactForm()).subscribe(
-      success => (this.okCreate = true, this.dataServices.setAllContact()),
+      success => (this.okCreate = true, this.dataServices.setAllContact(), this.viewServices.searchOff()),
       error => (this.viewServices.chooseAlertToOpen(5), this.dataServices.setAllContact())
     );
   }
@@ -155,7 +158,9 @@ export class EditDialogComponent implements OnInit {
 
   confirmEdit() {
     this.apiServices.updateContact(this.dataServices.getContactForm()).subscribe(
-      success => (this.okEdit = true, this.dataServices.setAllContact()),
+      success => (this.okEdit = true, this.dataServices.setAllContact(),
+                  this.dataServices.setContact(this.dataServices.getContactForm()),
+                  this.viewServices.searchOff()),
       error => this.viewServices.chooseAlertToOpen(5)
     );
   }
@@ -180,6 +185,7 @@ export class EditDialogComponent implements OnInit {
 export class AlertDialogComponent implements OnInit {
 
   constructor(private viewServices: ViewServicesService,
+              private location: Location,
               private dialogRef: MatDialogRef<AlertDialogComponent>) { }
 
   ngOnInit() {
