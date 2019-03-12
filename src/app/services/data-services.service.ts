@@ -36,6 +36,10 @@ export class DataServicesService {
     this.contactForm = cf;
   }
 
+  setContacts$(aux$) {
+    this.contacts$ = aux$;
+  }
+
   setAllContact() {
     this.contacts$ = this.apiServices.getAllContacts();
   }

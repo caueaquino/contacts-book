@@ -20,7 +20,7 @@ export class ViewAreaComponent implements OnInit {
   lowValue: number;
   highValue: number;
 
-  private cardContacts = null;
+  // private cardContacts = null;
 
   constructor(private dataServices: DataServicesService,
               private viewServices: ViewServicesService,
@@ -33,10 +33,10 @@ export class ViewAreaComponent implements OnInit {
     this.lowValue = 0;
     this.highValue = 10;
 
-    this.dataServices.getContacts$().subscribe((c) => {
-      this.cardContacts = c;
-      this.cardContacts = this.returnContactsCards();
-    });
+    // this.dataServices.getContacts$().subscribe((c) => {
+    //   this.cardContacts = c;
+    //   this.cardContacts = this.returnContactsCards(this.cardContacts);
+    // });
   }
 
   ngOnInit() {
@@ -56,18 +56,18 @@ getPaginatorData(event) {
   this.pageIndex = event.pageIndex;
 }
 
-  returnContactsCards() {
+  returnContactsCards(contactAux) {
     const auxContacts = [];
 
     if (this.route.isActive('Favorites', true)) {
-      for (const c of this.cardContacts) {
+      for (const c of contactAux) {
         if (c.isFavorite) {
           auxContacts.push(c);
         }
       }
       return auxContacts;
     }
-    return this.cardContacts;
+    return contactAux;
   }
 
   favoriteContactCardButton(contactAux: ContactStruct) {
@@ -118,14 +118,14 @@ export class DeleteDialogComponent implements OnInit {
 
   confirmDelete() {
     this.apiServices.deleteContact(this.dataServices.getContact().id).subscribe(
-      success => (this.okDelete = true, this.dataServices.setAllContact()),
+      success => (this.okDelete = true),
       error => this.viewServices.chooseAlertToOpen(5)
     );
   }
 
   okDeleteButton() {
     this.dialogRef.close();
-    ViewAreaComponent.call(ViewAreaComponent);
+    this.dataServices.setAllContact();
   }
 }
 

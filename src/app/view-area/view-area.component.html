@@ -4,7 +4,7 @@
 <section class="cards-container" *ngIf="dataServices.contacts$ | async as contacts; else loading">
   <h3 *ngIf="contacts.length<=0">No Contact Was Found!</h3>
 
-  <mat-card class="example-card" *ngFor="let contact of cardContacts | slice: lowValue : highValue">
+  <mat-card class="example-card" *ngFor="let contact of returnContactsCards(contacts) | slice: lowValue : highValue">
     <mat-card-header>
       <div class="container-name">
         <mat-card-title>{{ contact.firstName }}</mat-card-title>
@@ -21,6 +21,7 @@
       <button mat-button (click)="deleteContactCardButton(contact)"><mat-icon>delete</mat-icon> DELETE</button>
     </div>
   </mat-card>
+  
 
   <div class="paginator-container">
     <mat-paginator [length]="returnContactsCards(contacts).length" 
