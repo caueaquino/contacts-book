@@ -72,7 +72,7 @@ getPaginatorData(event) {
 
   favoriteContactCardButton(contactAux: ContactStruct) {
     this.dataServices.setContact(contactAux);
-    this.dialog.open(EditDialogComponent);
+    this.dialog.open(FavoriteDialogComponent);
   }
 
   viewContactCardButton(contactAux: ContactStruct) {
