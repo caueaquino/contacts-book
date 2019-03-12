@@ -4,20 +4,20 @@
 <section class="cards-container" *ngIf="dataServices.contacts$ | async as contacts; else loading">
   <h3 *ngIf="contacts.length<=0">No Contact Was Found!</h3>
 
-  <mat-card class="example-card" *ngFor="let contact of returnContactsCards(contacts) | slice: lowValue : highValue">
+  <mat-card class="example-card" *ngFor="let contact of cardContacts | slice: lowValue : highValue">
     <mat-card-header>
       <div class="container-name">
         <mat-card-title>{{ contact.firstName }}</mat-card-title>
         <mat-card-subtitle>{{ contact.lastName }}</mat-card-subtitle>
       </div>
-      <button class="favorite-button" (click)="favoriteContactCardButton(contact)"><mat-icon class="favorite-icon" [innerText]=" contact.isFavorite===true ? 'star' : 'star_border' "></mat-icon></button>
+      <button class="favorite-button" (click)="favoriteContactCardButton(contact)"><mat-icon class="favorite-icon" [innerText]=" contact.isFavorite ? 'star' : 'star_border' "></mat-icon></button>
     </mat-card-header>
     
     <img mat-card-image [src]=" contact.info.avatar==='' || contact.info.avatar===null ? '../../assets/images/alt-avatar.png' : contact.info.avatar " alt="Avatar Contact" width="300">
     
     <div class="container-buttons-create-contact">
       <button mat-button (click)="viewContactCardButton(contact)" routerLink="ViewContact"><mat-icon>visibility</mat-icon> VIEW</button>
-      <button mat-button (click)= "editContactCardButton(contact)"><mat-icon>edit</mat-icon> EDIT</button>
+      <button mat-button (click)= "editContactCardButton(contact)" routerLink="EditContact"><mat-icon>edit</mat-icon> EDIT</button>
       <button mat-button (click)="deleteContactCardButton(contact)"><mat-icon>delete</mat-icon> DELETE</button>
     </div>
   </mat-card>

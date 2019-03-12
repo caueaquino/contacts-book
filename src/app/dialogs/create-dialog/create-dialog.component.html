@@ -1,10 +1,14 @@
 <!-- HTML Document -->
 
-<div class="dialog-confirm" *ngIf="!this.okCreate">
+<div class="dialog-confirm" *ngIf="!this.okCreate && !this.loading">
   <span>Create Contact ?</span>
 
   <button mat-raised-button (click)="confirmCreate()"><mat-icon>check</mat-icon> Confirm</button>
   <button mat-raised-button (click)="cancelCreate()"><mat-icon>close</mat-icon> Cancel</button>
+</div>
+
+<div class="dialog-confirm" *ngIf="this.loading">
+  <span>Loading...</span>
 </div>
 
 <div class="dialog-confirm" *ngIf="this.okCreate">

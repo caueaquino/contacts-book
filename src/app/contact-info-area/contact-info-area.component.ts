@@ -75,12 +75,13 @@ export class ContactInfoAreaComponent implements OnInit {
 export class DeleteDialog2Component implements OnInit {
 
   private okDelete: boolean;
+  private loading: boolean;
 
   constructor(private viewServices: ViewServicesService,
               private apiServices: ApiServicesService,
               private dataServices: DataServicesService,
               private dialogRef: MatDialogRef<DeleteDialog2Component>) {
-
+      this.loading = false;
       this.okDelete = false;
   }
 
@@ -88,8 +89,10 @@ export class DeleteDialog2Component implements OnInit {
   }
 
   confirmDelete() {
+    this.loading = true;
+
     this.apiServices.deleteContact(this.dataServices.getContact().id).subscribe(
-      success => (this.okDelete = true, this.dataServices.setAllContact()),
+      success => (this.loading = false , this.okDelete = true, this.dataServices.setAllContact()),
       error => this.viewServices.chooseAlertToOpen(5)
     );
   }
@@ -107,24 +110,28 @@ export class DeleteDialog2Component implements OnInit {
 export class FavoriteDialog2Component implements OnInit {
 
   private okFavorite: boolean;
+  private loading: boolean;
 
   constructor(private viewServices: ViewServicesService,
               private apiServices: ApiServicesService,
               private dataServices: DataServicesService,
               private dialogRef: MatDialogRef<FavoriteDialog2Component>) {
     this.okFavorite = false;
+    this.loading = true;
   }
 
   ngOnInit() {
   }
 
   confirmFavorite() {
+    this.loading = false;
+
     const contactAux = this.dataServices.getContact();
 
     contactAux.isFavorite = !contactAux.isFavorite;
 
     this.apiServices.updateContactFavorite(contactAux).subscribe(
-      success => this.okFavorite = true,
+      success => (this.loading = true, this.okFavorite = true),
       error => (this.viewServices.chooseAlertToOpen(5), this.dataServices.setAllContact())
     );
   }
@@ -135,6 +142,5 @@ export class FavoriteDialog2Component implements OnInit {
 
   okFavoriteButton() {
     this.dialogRef.close();
-    this.okFavorite = false;
   }
 }

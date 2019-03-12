@@ -107,6 +107,7 @@ export class CreateContactAreaComponent implements OnInit {
 export class CreateDialogComponent implements OnInit {
 
   private okCreate: boolean;
+  private loading: boolean;
 
   constructor(private dataServices: DataServicesService,
               private viewServices: ViewServicesService,
@@ -114,13 +115,15 @@ export class CreateDialogComponent implements OnInit {
               private location: Location,
               private dialogRef: MatDialogRef<CreateDialogComponent>) {
     this.okCreate = false;
+    this.loading = false;
   }
   ngOnInit() {
   }
 
   confirmCreate() {
+    this.loading = true;
     this.apiServices.createContact(this.dataServices.getContactForm()).subscribe(
-      success => (this.okCreate = true, this.dataServices.setAllContact(), this.viewServices.searchOff()),
+      success => (this.loading = false, this.okCreate = true, this.dataServices.setAllContact(), this.viewServices.searchOff()),
       error => (this.viewServices.chooseAlertToOpen(5), this.dataServices.setAllContact())
     );
   }
@@ -132,7 +135,6 @@ export class CreateDialogComponent implements OnInit {
 
   okCreateButton() {
     this.dialogRef.close();
-    this.okCreate = false;
   }
 }
 
@@ -144,6 +146,7 @@ export class CreateDialogComponent implements OnInit {
 export class EditDialogComponent implements OnInit {
 
   private okEdit: boolean;
+  private loading: boolean;
 
   constructor(private dataServices: DataServicesService,
               private viewServices: ViewServicesService,
@@ -151,14 +154,16 @@ export class EditDialogComponent implements OnInit {
               private location: Location,
               private dialogRef: MatDialogRef<EditDialogComponent>) {
     this.okEdit = false;
+    this.loading = false;
   }
 
   ngOnInit() {
   }
 
   confirmEdit() {
+    this.loading = true;
     this.apiServices.updateContact(this.dataServices.getContactForm()).subscribe(
-      success => (this.okEdit = true, this.dataServices.setAllContact(),
+      success => (this.loading = false, this.okEdit = true, this.dataServices.setAllContact(),
                   this.dataServices.setContact(this.dataServices.getContactForm()),
                   this.viewServices.searchOff()),
       error => this.viewServices.chooseAlertToOpen(5)
@@ -172,7 +177,6 @@ export class EditDialogComponent implements OnInit {
 
   okEditButton() {
     this.dialogRef.close();
-    this.okEdit = false;
     this.location.back();
   }
 }

@@ -20,7 +20,7 @@ export class ViewAreaComponent implements OnInit {
   lowValue: number;
   highValue: number;
 
-  // private cardContacts = null;
+  private cardContacts = null;
 
   constructor(private dataServices: DataServicesService,
               private viewServices: ViewServicesService,
@@ -33,28 +33,28 @@ export class ViewAreaComponent implements OnInit {
     this.lowValue = 0;
     this.highValue = 10;
 
-    // this.dataServices.getContacts$().subscribe((c) => {
-    //   this.cardContacts = c;
-    //   this.cardContacts = this.returnContactsCards(this.cardContacts);
-    // });
+    this.dataServices.getContacts$().subscribe((c) => {
+      this.cardContacts = c;
+      this.cardContacts = this.returnContactsCards(this.cardContacts);
+    });
   }
 
   ngOnInit() {
   }
 
-getPaginatorData(event) {
-  // console.log(event);
-  if (event.pageIndex === this.pageIndex + 1) {
-    this.lowValue = this.lowValue + this.pageSize;
-    this.highValue =  this.highValue + this.pageSize;
+  getPaginatorData(event) {
+    // console.log(event);
+    if (event.pageIndex === this.pageIndex + 1) {
+      this.lowValue = this.lowValue + this.pageSize;
+      this.highValue =  this.highValue + this.pageSize;
 
-  } else if (event.pageIndex === this.pageIndex - 1) {
-    this.lowValue = this.lowValue - this.pageSize;
-    this.highValue =  this.highValue - this.pageSize;
+    } else if (event.pageIndex === this.pageIndex - 1) {
+      this.lowValue = this.lowValue - this.pageSize;
+      this.highValue =  this.highValue - this.pageSize;
+    }
+
+    this.pageIndex = event.pageIndex;
   }
-
-  this.pageIndex = event.pageIndex;
-}
 
   returnContactsCards(contactAux) {
     const auxContacts = [];
@@ -88,6 +88,10 @@ getPaginatorData(event) {
       this.pageSize = 10;
       this.lowValue = 0;
       this.highValue = 10;
+      this.dataServices.getContacts$().subscribe((c) => {
+        this.cardContacts = c;
+        this.cardContacts = this.returnContactsCards(this.cardContacts);
+      });
     });
   }
 
@@ -104,12 +108,13 @@ getPaginatorData(event) {
 export class DeleteDialogComponent implements OnInit {
 
   private okDelete: boolean;
+  private loading: boolean;
 
   constructor(private viewServices: ViewServicesService,
               private apiServices: ApiServicesService,
               private dataServices: DataServicesService,
               private dialogRef: MatDialogRef<DeleteDialogComponent>) {
-
+      this.loading = false;
       this.okDelete = false;
   }
 
@@ -117,8 +122,9 @@ export class DeleteDialogComponent implements OnInit {
   }
 
   confirmDelete() {
+    this.loading = true;
     this.apiServices.deleteContact(this.dataServices.getContact().id).subscribe(
-      success => (this.okDelete = true),
+      success => (this.loading = false, this.okDelete = true),
       error => this.viewServices.chooseAlertToOpen(5)
     );
   }
@@ -137,24 +143,28 @@ export class DeleteDialogComponent implements OnInit {
 export class FavoriteDialogComponent implements OnInit {
 
   private okFavorite: boolean;
+  private loading: boolean;
 
   constructor(private viewServices: ViewServicesService,
               private apiServices: ApiServicesService,
               private dataServices: DataServicesService,
               private dialogRef: MatDialogRef<FavoriteDialogComponent>) {
     this.okFavorite = false;
+    this.loading = true;
   }
 
   ngOnInit() {
   }
 
   confirmFavorite() {
+    this.loading = false;
+
     const contactAux = this.dataServices.getContact();
 
     contactAux.isFavorite = !contactAux.isFavorite;
 
     this.apiServices.updateContactFavorite(contactAux).subscribe(
-      success => this.okFavorite = true,
+      success => (this.loading = true, this.okFavorite = true),
       error => (this.viewServices.chooseAlertToOpen(5), this.dataServices.setAllContact())
     );
   }
@@ -165,6 +175,5 @@ export class FavoriteDialogComponent implements OnInit {
 
   okFavoriteButton() {
     this.dialogRef.close();
-    this.okFavorite = false;
   }
 }

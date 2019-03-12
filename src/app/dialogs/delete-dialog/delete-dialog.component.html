@@ -1,10 +1,14 @@
 <!-- HTML Document -->
 
-<div class="dialog-confirm" *ngIf="!this.okDelete">
+<div class="dialog-confirm" *ngIf="!this.okDelete && !this.loading">
   <span>Delete Contact ?</span>
 
   <button mat-raised-button (click)="confirmDelete()"><mat-icon>check</mat-icon> Confirm</button>
   <button mat-raised-button (click)="dialogRef.close()"><mat-icon>close</mat-icon> Cancel</button>
+</div>
+
+<div class="dialog-confirm" *ngIf="this.loading">
+  <span>Loading...</span>
 </div>
 
 <div class="dialog-confirm" *ngIf="this.okDelete">
