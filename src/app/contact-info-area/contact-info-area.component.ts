@@ -6,6 +6,8 @@ import { GeneratedFile } from '@angular/compiler';
 import { ApiServicesService } from '../services/api-services.service';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
+import { DeleteDialogComponent } from '../dialogs/delete-dialog/delete-dialog.component';
+import { FavoriteDialogComponent } from '../dialogs/favorite-dialog/favorite-dialog.component';
 
 @Component({
   selector: 'app-contact-info-area',
@@ -58,89 +60,11 @@ export class ContactInfoAreaComponent implements OnInit {
 
   deleteContactInfoButton() {
     this.dataServices.setContact(this.infoContact);
-    this.dialog.open(DeleteDialog2Component);
+    this.dialog.open(DeleteDialogComponent);
   }
 
   favoriteContactInfoButton() {
     this.dataServices.setContact(this.infoContact);
-    this.dialog.open(FavoriteDialog2Component);
-  }
-}
-
-@Component({
-  selector: 'app-delete-dialog',
-  templateUrl: '../dialogs/delete-dialog/delete-dialog.component.html',
-  styleUrls: ['../dialogs/delete-dialog/delete-dialog.component.css']
-})
-export class DeleteDialog2Component implements OnInit {
-
-  private okDelete: boolean;
-  private loading: boolean;
-
-  constructor(private viewServices: ViewServicesService,
-              private apiServices: ApiServicesService,
-              private dataServices: DataServicesService,
-              private dialogRef: MatDialogRef<DeleteDialog2Component>) {
-      this.loading = false;
-      this.okDelete = false;
-  }
-
-  ngOnInit() {
-  }
-
-  confirmDelete() {
-    this.loading = true;
-
-    this.apiServices.deleteContact(this.dataServices.getContact().id).subscribe(
-      success => (this.loading = false , this.okDelete = true, this.dataServices.setAllContact()),
-      error => this.viewServices.chooseAlertToOpen(5)
-    );
-  }
-
-  okDeleteButton() {
-    this.dialogRef.close();
-  }
-}
-
-@Component({
-  selector: 'app-favorite-dialog',
-  templateUrl: '../dialogs/favorite-dialog/favorite-dialog.component.html',
-  styleUrls: ['../dialogs/favorite-dialog/favorite-dialog.component.css']
-})
-export class FavoriteDialog2Component implements OnInit {
-
-  private okFavorite: boolean;
-  private loading: boolean;
-
-  constructor(private viewServices: ViewServicesService,
-              private apiServices: ApiServicesService,
-              private dataServices: DataServicesService,
-              private dialogRef: MatDialogRef<FavoriteDialog2Component>) {
-    this.okFavorite = false;
-    this.loading = true;
-  }
-
-  ngOnInit() {
-  }
-
-  confirmFavorite() {
-    this.loading = false;
-
-    const contactAux = this.dataServices.getContact();
-
-    contactAux.isFavorite = !contactAux.isFavorite;
-
-    this.apiServices.updateContactFavorite(contactAux).subscribe(
-      success => (this.loading = true, this.okFavorite = true),
-      error => (this.viewServices.chooseAlertToOpen(5), this.dataServices.setAllContact())
-    );
-  }
-
-  cancelButtonFavorite() {
-    this.dialogRef.close();
-  }
-
-  okFavoriteButton() {
-    this.dialogRef.close();
+    this.dialog.open(FavoriteDialogComponent);
   }
 }

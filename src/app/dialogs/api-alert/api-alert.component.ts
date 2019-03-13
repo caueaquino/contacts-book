@@ -1,5 +1,5 @@
-import { ViewServicesService } from './../services/view-services.service';
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-api-alert',
@@ -8,12 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ApiAlertComponent implements OnInit {
 
-  constructor(private viewServices: ViewServicesService) { }
+  constructor(private dialogRef: MatDialogRef<ApiAlertComponent>) { }
 
   ngOnInit() {
   }
 
   okApiAlertButton() {
-    this.viewServices.resetAlerts();
+    this.dialogRef.close();
   }
 }

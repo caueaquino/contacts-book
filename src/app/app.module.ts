@@ -1,3 +1,4 @@
+import { AlertDialogComponent } from './dialogs/alert-dialog/alert-dialog.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -25,20 +26,19 @@ import {
 import { MainBarComponent } from './main-bar/main-bar.component';
 import { SearchContainerComponent } from './search-container/search-container.component';
 
-import { CreateContactAreaComponent,
-         CreateDialogComponent,
-         EditDialogComponent,
-         AlertDialogComponent } from './create-contact-area/create-contact-area.component';
+import { CreateContactAreaComponent } from './create-contact-area/create-contact-area.component';
 
 import { HeaderViewAreaComponent } from './header-view-area/header-view-area.component';
-import { ViewAreaComponent, FavoriteDialogComponent } from './view-area/view-area.component';
+
+import { ViewAreaComponent } from './view-area/view-area.component';
+import { FavoriteDialogComponent } from './dialogs/favorite-dialog/favorite-dialog.component';
 import { ViewServicesService } from './services/view-services.service';
 import { DataServicesService } from './services/data-services.service';
-import { ContactInfoAreaComponent,
-         DeleteDialog2Component,
-         FavoriteDialog2Component } from './contact-info-area/contact-info-area.component';
-import { ApiAlertComponent } from './api-alert/api-alert.component';
-import { DeleteDialogComponent } from './view-area/view-area.component';
+import { ContactInfoAreaComponent } from './contact-info-area/contact-info-area.component';
+import { ApiAlertComponent } from './dialogs/api-alert/api-alert.component';
+import { DeleteDialogComponent } from './dialogs/delete-dialog/delete-dialog.component';
+import { EditDialogComponent } from './dialogs/edit-dialog/edit-dialog.component';
+import { CreateDialogComponent } from './dialogs/create-dialog/create-dialog.component';
 
 import { routing } from './app.routing';
 
@@ -53,12 +53,10 @@ import { routing } from './app.routing';
     FavoriteDialogComponent,
     ContactInfoAreaComponent,
     EditDialogComponent,
-    AlertDialogComponent,
     ApiAlertComponent,
     DeleteDialogComponent,
-    DeleteDialog2Component,
     CreateDialogComponent,
-    FavoriteDialog2Component
+    AlertDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -88,12 +86,11 @@ import { routing } from './app.routing';
   ],
   entryComponents: [
     DeleteDialogComponent,
-    DeleteDialog2Component,
     CreateDialogComponent,
     EditDialogComponent,
-    AlertDialogComponent,
     FavoriteDialogComponent,
-    FavoriteDialog2Component
+    ApiAlertComponent,
+    AlertDialogComponent
   ],
   bootstrap: [AppComponent]
 })

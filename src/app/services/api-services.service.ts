@@ -23,11 +23,13 @@ export class ApiServicesService {
     return this.http.get<ContactStruct[]>(this.API);
   }
 
+
   public deleteContact(id: string) {
     const url = `${this.API}/${id}`;
 
     return this.http.delete(url, httpOptions);
   }
+
 
   public createContact(contactAux) {
     const postContact = this.setContactStruct(contactAux);
@@ -35,11 +37,13 @@ export class ApiServicesService {
     return this.http.post(this.API, postContact, httpOptions);
   }
 
+
   public updateContact(contactAux) {
     const putContact = this.setContactStruct(contactAux);
 
     return this.http.put(`${this.API}/${contactAux.id}`, putContact, httpOptions);
   }
+
 
   public updateContactFavorite(contactAux: ContactStruct) {
 
@@ -49,6 +53,7 @@ export class ApiServicesService {
 
     return this.http.put(url, putContact, httpOptions);
   }
+
 
   setContactStruct(contactAux) {
     const Contact = {
@@ -66,6 +71,7 @@ export class ApiServicesService {
 
     return Contact;
   }
+
 
   setUpDataContact(contactAux) {
     if (contactAux.avatar === '') {
