@@ -8,7 +8,8 @@
 </div>
 
 <div class="dialog-confirm" *ngIf="!this.loading">
-    <span>Loading...</span>
+  <mat-spinner></mat-spinner>
+  <span>Loading...</span>
 </div>
 
 <div class="dialog-confirm" *ngIf="this.okFavorite">
